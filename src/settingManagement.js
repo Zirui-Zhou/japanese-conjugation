@@ -425,13 +425,43 @@ export function applyAllSettingsFilterWords(settings, completeWordList) {
 		}
 	}
 
-	return verbs.concat(adjectives);
+	let words = verbs.concat(adjectives);
+
+	// Apply global JLPT filters
+	const globalRegex = /^jlptn[1-5]$/;
+	let globalOptions = Object.keys(settings).filter((el) =>
+		globalRegex.test(el)
+	);
+	for (let i = 0; i < globalOptions.length; i++) {
+		if (settings[globalOptions[i]] === false) {
+			words = words.filter(questionRemoveFilters.global[globalOptions[i]]);
+		}
+	}
+
+	return words;
 }
 
 // The input to these functions is a "Word" object defined in main.js.
 // If one of these filters is applied to an array of Words,
 // that type of Word will be removed from the array.
 const questionRemoveFilters = {
+	global: {
+		jlptn5: function (word) {
+			return word.wordJSON.jlpt !== "N5";
+		},
+		jlptn4: function (word) {
+			return word.wordJSON.jlpt !== "N4";
+		},
+		jlptn3: function (word) {
+			return word.wordJSON.jlpt !== "N3";
+		},
+		jlptn2: function (word) {
+			return word.wordJSON.jlpt !== "N2";
+		},
+		jlptn1: function (word) {
+			return word.wordJSON.jlpt !== "N1";
+		},
+	},
 	verbs: {
 		verbpresent: function (word) {
 			return word.conjugation.type !== CONJUGATION_TYPES.present;
@@ -712,6 +742,7 @@ export function insertSettingsFromUi(settings) {
 			CONDITIONAL_UI_TIMINGS.always
 		);
 	}
+
 
 	return settings;
 }

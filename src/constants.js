@@ -49,4 +49,10 @@ export const orderedMaxScoreSettings = Object.freeze([
 	"verbimperative",
 	// 11/29/25
 	"verbcausativepassive",
+	// JLPT level filters
+	"jlptn5",
+	"jlptn4",
+	"jlptn3",
+	"jlptn2",
+	"jlptn1",
 ]);

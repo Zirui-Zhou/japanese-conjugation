@@ -37,7 +37,10 @@
                     <div id="verb-container">
                         <div id="verb-box">
                             <p id="verb-text" lang="ja"></p>
-                            <p id="translation"></p>
+                            <div id="verb-meta-row">
+                                <span id="jlpt-badge"></span>
+                                <p id="translation"></p>
+                            </div>
                             <p id="verb-type"></p>
                         </div>
                     </div>
@@ -88,6 +91,19 @@
                         </div>
                         <div class="option-row"><input id="emoji-checkbox" type="checkbox" name="emoji"><label for="emoji-checkbox">显示变位类型的表情符号</label></div>
                         <div class="option-row"><input id="streak-checkbox" type="checkbox" name="streak"><label for="streak-checkbox">显示当前/最大连对</label></div>
+                    </div>
+                    <div id="jlpt-settings">
+                        <hr>
+                        <div id="jlpt-h3-container">
+                            <h3>JLPT 等级</h3>
+                        </div>
+                        <div class="options-indent" id="jlpt-options-container">
+                            <div class="option-row"><input id="jlptn5-checkbox" type="checkbox" name="jlptn5"><label for="jlptn5-checkbox">N5</label></div>
+                            <div class="option-row"><input id="jlptn4-checkbox" type="checkbox" name="jlptn4"><label for="jlptn4-checkbox">N4</label></div>
+                            <div class="option-row"><input id="jlptn3-checkbox" type="checkbox" name="jlptn3"><label for="jlptn3-checkbox">N3</label></div>
+                            <div class="option-row"><input id="jlptn2-checkbox" type="checkbox" name="jlptn2"><label for="jlptn2-checkbox">N2</label></div>
+                            <div class="option-row"><input id="jlptn1-checkbox" type="checkbox" name="jlptn1"><label for="jlptn1-checkbox">N1</label></div>
+                        </div>
                     </div>
                     <div id="conjugation-settings">
                         <hr>

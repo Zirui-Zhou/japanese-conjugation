@@ -130,10 +130,13 @@ function updateCurrentWord(word) {
 		.replaceAll("</rt>", "</span>");
 	document.getElementById("verb-text").innerHTML = verbHtml;
 	document.getElementById("translation").textContent = word.wordJSON.eng;
+	// JLPT badge
+	const jlptBadge = document.getElementById("jlpt-badge");
+	jlptBadge.textContent = word.wordJSON.jlpt || "";
 	// Set verb-type to a non-breaking space to preserve vertical height
 	document.getElementById("verb-type").textContent = "\u00A0";
 	document.getElementById("conjugation-inquery-text").innerHTML =
-		conjugationInqueryFormatting(word.conjugation);
+	conjugationInqueryFormatting(word.conjugation);
 }
 
 function touConjugation(affirmative, polite, conjugationType, isKanji) {
@@ -2367,6 +2370,10 @@ class ConjugationApp {
 			this.state.settings,
 			this.state.completeWordList
 		);
+		if (filteredWords.length === 0) {
+			this.state.currentWordList = [];
+			return;
+		}
 		equalizeProbabilities(filteredWords);
 		this.state.currentWordList = filteredWords;
 	}
