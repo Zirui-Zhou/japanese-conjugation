@@ -59,7 +59,8 @@ function wordTypeToLabel(type) {
     const map = {
         u: "五段动词",
         ru: "一段动词",
-        irv: "不规则动词",
+        irv: "サ変/カ変動詞",
+        irg: "不規則動詞",
         i: "い形容词",
         na: "な形容词",
         ira: "不规则形容词",

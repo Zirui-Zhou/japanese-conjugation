@@ -52,7 +52,11 @@ function wordTypeToDisplayText(type) {
 		return "う动词";
 	} else if (type == "ru") {
 		return "る动词";
-	} else if (type == "irv" || type == "ira") {
+	} else if (type == "irv") {
+		return "サ変動詞";
+	} else if (type == "irg") {
+		return "不規則動詞";
+	} else if (type == "ira") {
 		return "不规则";
 	} else if (type == "i") {
 		return "い形容词";
@@ -741,7 +745,7 @@ const conjugationFunctions = {
 			affirmative,
 			polite
 		) {
-			if (type == "irv") {
+			if (type == "irv" || type == "irg") {
 				return irregularVerbConjugation(
 					baseVerbText,
 					affirmative,
@@ -767,7 +771,7 @@ const conjugationFunctions = {
 			affirmative,
 			polite
 		) {
-			if (type == "irv") {
+			if (type == "irv" || type == "irg") {
 				return irregularVerbConjugation(
 					baseVerbText,
 					affirmative,
@@ -796,7 +800,7 @@ const conjugationFunctions = {
 			}
 		},
 		[CONJUGATION_TYPES.te]: function (baseVerbText, type) {
-			if (type == "irv") {
+			if (type == "irv" || type == "irg") {
 				return irregularVerbConjugation(
 					baseVerbText,
 					false,
@@ -832,7 +836,7 @@ const conjugationFunctions = {
 			affirmative,
 			polite
 		) {
-			if (type === "irv") {
+			if (type === "irv" || type === "irg") {
 				return irregularVerbConjugation(
 					baseVerbText,
 					false,
@@ -859,7 +863,7 @@ const conjugationFunctions = {
 			affirmative,
 			polite
 		) {
-			if (type === "irv") {
+			if (type === "irv" || type === "irg") {
 				return irregularVerbConjugation(
 					baseVerbText,
 					affirmative,
@@ -888,7 +892,7 @@ const conjugationFunctions = {
 			affirmative,
 			polite
 		) {
-			if (type === "irv") {
+			if (type === "irv" || type === "irg") {
 				return irregularVerbConjugation(
 					baseVerbText,
 					affirmative,
@@ -922,7 +926,7 @@ const conjugationFunctions = {
 			affirmative,
 			polite
 		) {
-			if (type === "irv") {
+			if (type === "irv" || type === "irg") {
 				return irregularVerbConjugation(
 					baseVerbText,
 					affirmative,
@@ -955,7 +959,7 @@ const conjugationFunctions = {
 			}
 		},
 		[CONJUGATION_TYPES.imperative]: function (baseVerbText, type) {
-			if (type === "irv") {
+			if (type === "irv" || type === "irg") {
 				return irregularVerbConjugation(
 					baseVerbText,
 					null,
@@ -985,7 +989,7 @@ const conjugationFunctions = {
 			affirmative,
 			polite
 		) {
-			if (type === "irv") {
+			if (type === "irv" || type === "irg") {
 				return irregularVerbConjugation(
 					baseVerbText,
 					affirmative,
@@ -1135,7 +1139,8 @@ function getPartOfSpeech(wordJSON) {
 	if (
 		wordJSON.type === "u" ||
 		wordJSON.type === "ru" ||
-		wordJSON.type === "irv"
+		wordJSON.type === "irv" ||
+		wordJSON.type === "irg"
 	) {
 		return PARTS_OF_SPEECH.verb;
 	} else if (
@@ -1555,6 +1560,7 @@ function typeToWordBoxColor(type) {
 		case "ru":
 			return "rgb(5, 80, 245)";
 		case "irv":
+		case "irg":
 			return "gray";
 		case "ira":
 			return "gray";
@@ -1733,8 +1739,10 @@ function renderTutorial() {
 		const sectionWordType = getSectionWordType(section.title);
 		if (filters.wordType) {
 			if (Array.isArray(filters.wordType)) {
-				if (!filters.wordType.includes(sectionWordType)) continue;
-			} else if (sectionWordType !== filters.wordType) {
+				if (!filters.wordType.includes(sectionWordType) && !(filters.wordType.includes("irg") && sectionWordType === "irv")) continue;
+			} else if (sectionWordType !== filters.wordType &&
+				// irg verbs share the same tutorial section as irv
+				!(filters.wordType === "irg" && sectionWordType === "irv")) {
 				continue;
 			}
 		}
@@ -1819,7 +1827,7 @@ function showPerQuestionTutorial(word) {
 
 	// For irregular verbs, try to find specific tutorial key
 	let key;
-	if (wordType === "irv") {
+	if (wordType === "irv" || wordType === "irg") {
 		key = getIrregularTutorialKey(word);
 	} else {
 		key = getTutorialKey(wordType, conjugationType, affirmative, polite);

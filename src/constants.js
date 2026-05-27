@@ -23,6 +23,7 @@ export const orderedMaxScoreSettings = Object.freeze([
 	"verbu",
 	"verbru",
 	"verbirregular",
+	"verbirregulargodan",
 	"verbpresent",
 	"verbpast",
 	"verbte",

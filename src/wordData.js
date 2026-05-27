@@ -1,10 +1,10 @@
 export const wordData = {
     "verbs": [
-        {"kanji":"<ruby>行<rt>い</rt></ruby>く","type":"irv","eng":"去","jlpt":"N5","group":"iku"},
+        {"kanji":"<ruby>行<rt>い</rt></ruby>く","type":"irg","eng":"去","jlpt":"N5","group":"iku"},
         {"kanji":"する","type":"irv","eng":"做","jlpt":"N5","group":"suru"},
         {"kanji":"<ruby>来<rt>く</rt></ruby>る","type":"irv","eng":"来","jlpt":"N5"},
-        {"kanji":"ある","type":"irv","eng":"有、存在（无生命物体）","jlpt":"N5"},
-        {"kanji":"<ruby>問<rt>と</rt></ruby>う","type":"irv","eng":"问、质问","jlpt":"N5"},
+        {"kanji":"ある","type":"irg","eng":"有、存在（无生命物体）","jlpt":"N5"},
+        {"kanji":"<ruby>問<rt>と</rt></ruby>う","type":"irg","eng":"问、质问","jlpt":"N5"},
         {"kanji":"いる","type":"ru","eng":"存在、有（有生命事物）","jlpt":"N5"},
         {"kanji":"<ruby>始<rt>はじ</rt></ruby>める","type":"ru","eng":"开始","jlpt":"N5"},
         {"kanji":"<ruby>借<rt>か</rt></ruby>りる","type":"ru","eng":"借、租","jlpt":"N5"},
@@ -74,7 +74,7 @@ export const wordData = {
         {"kanji":"<ruby>分<rt>わ</rt></ruby>かる","type":"u","eng":"理解","jlpt":"N5"},
         {"kanji":"<ruby>勉<rt>べんき</rt></ruby><ruby>強<rt>ょう</rt></ruby>する","type":"irv","eng":"学习","jlpt":"N5","group":"suru"},
         {"kanji":"<ruby>受<rt>う</rt></ruby>け<ruby>持<rt>も</rt></ruby>つ","type":"u","eng":"负责","jlpt":"N5"},
-        {"kanji":"<ruby>持<rt>も</rt></ruby>って<ruby>行<rt>い</rt></ruby>く","type":"irv","eng":"带走","jlpt":"N5","group":"iku"},
+        {"kanji":"<ruby>持<rt>も</rt></ruby>って<ruby>行<rt>い</rt></ruby>く","type":"irg","eng":"带走","jlpt":"N5","group":"iku"},
         {"kanji":"<ruby>食<rt>た</rt></ruby>べ<ruby>歩<rt>ある</rt></ruby>く","type":"u","eng":"品尝各餐厅美食","jlpt":"N5"},
         {"kanji":"<ruby>洗<rt>あら</rt></ruby>う","type":"u","eng":"洗","jlpt":"N5"},
         {"kanji":"<ruby>歌<rt>うた</rt></ruby>う","type":"u","eng":"唱歌","jlpt":"N5"},

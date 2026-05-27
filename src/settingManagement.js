@@ -514,6 +514,9 @@ const questionRemoveFilters = {
 		verbirregular: function (word) {
 			return word.wordJSON.type != "irv";
 		},
+		verbirregulargodan: function (word) {
+			return word.wordJSON.type != "irg";
+		},
 	},
 	adjectives: {
 		adjectivepresent: function (word) {
