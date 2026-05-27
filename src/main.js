@@ -23,8 +23,8 @@ import { toggleDisplayNone, toggleBackgroundNone } from "./utils.js";
 
 const isTouch = "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
 document.getElementById("press-any-key-text").textContent = isTouch
-	? "Tap to continue"
-	: "Press Enter/Return to continue";
+	? "点击继续"
+	: "按 Enter/Return 继续";
 
 // Stored in state.activeScreen
 const SCREENS = Object.freeze({
@@ -36,15 +36,15 @@ const SCREENS = Object.freeze({
 
 function wordTypeToDisplayText(type) {
 	if (type == "u") {
-		return "う-verb";
+		return "う动词";
 	} else if (type == "ru") {
-		return "る-verb";
+		return "る动词";
 	} else if (type == "irv" || type == "ira") {
-		return "Irregular";
+		return "不规则";
 	} else if (type == "i") {
-		return "い-adjective";
+		return "い形容词";
 	} else if (type == "na") {
-		return "な-adjective";
+		return "な形容词";
 	}
 }
 
@@ -79,13 +79,13 @@ function conjugationInqueryFormatting(conjugation) {
 	// This used to also add "Affirmative" text when affirmative was true, but it was a little redundant.
 	// Now it only adds "Negative" text when affirmative is false.
 	if (conjugation.affirmative === false) {
-		newString += createInqueryText("Negative", "🚫");
+		newString += createInqueryText("否定", "🚫");
 	}
 
 	if (conjugation.polite === true) {
-		newString += createInqueryText("Polite", "👔");
+		newString += createInqueryText("敬体", "👔");
 	} else if (conjugation.polite === false) {
-		newString += createInqueryText("Plain", "👪");
+		newString += createInqueryText("简体", "👪");
 	}
 
 	return newString;
@@ -489,7 +489,7 @@ function irregularVerbConjugation(
 		return retvals;
 	}
 
-	return "Error";
+	return "错误";
 }
 
 function iiConjugation(affirmative, polite, conjugationType) {
@@ -1556,7 +1556,7 @@ function updateStatusBoxes(word, entryText) {
 	if (word.conjugation.validAnswers.some((e) => e == entryText)) {
 		statusBox.style.background = "green";
 		const subConjugationForm = getSubConjugationForm(word, entryText);
-		document.getElementById("status-text").innerHTML = `Correct${
+		document.getElementById("status-text").innerHTML = `正确${
 			subConjugationForm != null
 				? '<span class="sub-conjugation-indicator">(' +
 				  subConjugationForm +
@@ -1606,7 +1606,7 @@ function getSubConjugationForm(word, validAnswer) {
 		}
 
 		if (shortFormStems.some((stem) => validAnswer.startsWith(stem))) {
-			return "ら-omitted short form";
+			return "ら省略形";
 		}
 	}
 

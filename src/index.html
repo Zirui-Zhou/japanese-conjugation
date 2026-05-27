@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Japanese Conjugation Practice</title>
-        <meta name="description" content="Learn how to conjugate Japanese verbs and adjectives! Includes many forms: past tense, te form, passive, causative, potential, and more.">
-        <meta property="og:title" content="Japanese Conjugation Practice">
-        <meta property="og:description" content="Learn how to conjugate Japanese verbs and adjectives!">
+        <title>日语动词变形练习</title>
+        <meta name="description" content="学习日语动词和形容词的变形！包含多种形式：过去形、て形、被动形、使役形、可能形等。">
+        <meta property="og:title" content="日语动词变形练习">
+        <meta property="og:description" content="学习日语动词和形容词的变形！">
         <meta property="og:type" content="website" />
         <meta property="og:image" content="./streamlined_screenshot.png">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,16 +20,16 @@
     </head>
     <body>
     <div id="toppest-container" class="display-none">
-        <h1>Japanese Conjugation Practice</h1>
+        <h1>日语动词变形练习</h1>
         <div id="top-container">
             <div id = "main-view">
                 <div id="streak-container">
                         <div id="current-streak" class="streak">
-                            <p>Current Streak</p>
+                            <p>当前连对</p>
                             <p id="current-streak-text">0</p>
                         </div>
                         <div id="max-streak" class="streak">
-                            <p>Max Streak</p>
+                            <p>最大连对</p>
                             <p id="max-streak-text"> </p>
                         </div>
                     </div>
@@ -45,77 +45,77 @@
                     </div>
                     <div id="status-container">
                         <div id="status-box" class="display-none">
-                            <p id="status-text">Correct</p>
+                            <p id="status-text">正确</p>
                         </div>
                     </div>
                     <div id="input-container">
-                        <div id="input-tooltip" class="tooltip">Invalid characters. Only Japanese kana and kanji are valid.</div>
+                        <div id="input-tooltip" class="tooltip">输入无效。仅可使用日语假名和汉字。</div>
                         <input id="main-text-input" type="text" maxlength="30" aria-label="Answer">
                     </div>
                     <div id="settings-container">
                         <div id="settings-child-container">
                             <table id="settings-table">
                                 <td style="width:29%"></td>
-                                <td style="width:42%"id="press-any-key-text" class="display-none">Press Enter/Return to continue</td>
-                                <td style="width:29%"><button id="options-button">Options ⚙️</button></td>
+                                <td style="width:42%"id="press-any-key-text" class="display-none">按 Enter/Return 继续</td>
+                                <td style="width:29%"><button id="options-button">设置 ⚙️</button></td>
                             </table>
                         </div>
                     </div>
             </div>
             <div id="options-view" class="display-none">
-                <h2>Options</h2>
+                <h2>设置</h2>
                 <form id="options-form">
                     <div id="non-conjugation-settings">
                         <div class="option-row">
-                            <div class="sub-option-row"><input id="furigana-checkbox" type="checkbox" name="furigana"><label for="furigana-checkbox">Show furigana above kanji</label></div>
+                            <div class="sub-option-row"><input id="furigana-checkbox" type="checkbox" name="furigana"><label for="furigana-checkbox">在汉字上方显示振假名</label></div>
                             <div id="furigana-sub-options" class="option-row options-indent sub-options">
-                                <div class="sub-option-row"><input id="furigana-always-radio" type="radio" name="furiganaTiming" value="always"><label for="furigana-always-radio">always</label></div>
-                                <div class="sub-option-row"><input id="furigana-after-radio" type="radio" name="furiganaTiming" value="after"><label for="furigana-after-radio">only after answering</label></div>
+                                <div class="sub-option-row"><input id="furigana-always-radio" type="radio" name="furiganaTiming" value="always"><label for="furigana-always-radio">始终显示</label></div>
+                                <div class="sub-option-row"><input id="furigana-after-radio" type="radio" name="furiganaTiming" value="after"><label for="furigana-after-radio">仅在作答后显示</label></div>
                             </div>
                         </div>
                         <div class="option-row">
-                            <div class="sub-option-row"><input id="translation-checkbox" type="checkbox" name="translation"><label for="translation-checkbox">Show English translations</label></div>
+                            <div class="sub-option-row"><input id="translation-checkbox" type="checkbox" name="translation"><label for="translation-checkbox">显示中文翻译</label></div>
                             <div id="translation-sub-options" class="option-row options-indent sub-options">
-                                <div class="sub-option-row"><input id="translation-always-radio" type="radio" name="translationTiming" value="always"><label for="translation-always-radio">always</label></div>
-                                <div class="sub-option-row"><input id="translation-after-radio" type="radio" name="translationTiming" value="after"><label for="translation-after-radio">only after answering</label></div>
+                                <div class="sub-option-row"><input id="translation-always-radio" type="radio" name="translationTiming" value="always"><label for="translation-always-radio">始终显示</label></div>
+                                <div class="sub-option-row"><input id="translation-after-radio" type="radio" name="translationTiming" value="after"><label for="translation-after-radio">仅在作答后显示</label></div>
                             </div>
                         </div>
-                        <div class="option-row"><input id="emoji-checkbox" type="checkbox" name="emoji"><label for="emoji-checkbox">Show emojis above conjugation types</label></div>
-                        <div class="option-row"><input id="streak-checkbox" type="checkbox" name="streak"><label for="streak-checkbox">Show current/max streak</label></div>
+                        <div class="option-row"><input id="emoji-checkbox" type="checkbox" name="emoji"><label for="emoji-checkbox">显示变位类型的表情符号</label></div>
+                        <div class="option-row"><input id="streak-checkbox" type="checkbox" name="streak"><label for="streak-checkbox">显示当前/最大连对</label></div>
                     </div>
                     <div id="conjugation-settings">
                         <hr>
                         <div id="verbs-h3-container">
-                            <input id="verbs-checkbox" type="checkbox" name="verb"><label for="verbs-checkbox"><h3>Verbs</h3></label>
-                            <span id="top-must-choose" class="settings-error-text display-none">*Must choose at least 1 option from this category</span>
+                            <input id="verbs-checkbox" type="checkbox" name="verb"><label for="verbs-checkbox"><h3>动词</h3></label>
+                            <span id="top-must-choose" class="settings-error-text display-none">*此类别至少需选择 1 项</span>
                         </div>
                         <div class="options-indent" id="verb-options-container">
                             <table style="width:100%" class="options-group">
                                 <tr>
-                                    <td><input id="verbu-checkbox" type="checkbox" name="verbu"><label for="verbu-checkbox">う-verbs</label></td>
-                                    <td rowspan="3"class="settings-error-text display-none">*Must choose at least 1 option from this category</td>
+                                    <td><input id="verbu-checkbox" type="checkbox" name="verbu"><label for="verbu-checkbox">う动词</label></td>
+                                    <td rowspan="3"class="settings-error-text display-none">*此类别至少需选择 1 项</td>
                                 </tr>
-                                <tr><td><input id="verbru-checkbox" type="checkbox" name="verbru"><label for="verbru-checkbox">る-verbs</label></td></tr>
-                                <tr><td><input id="verbirregular-checkbox" type="checkbox" name="verbirregular"><label for="verbirregular-checkbox">Irregular verbs</label></td></tr>
+                                <tr><td><input id="verbru-checkbox" type="checkbox" name="verbru"><label for="verbru-checkbox">る动词</label></td></tr>
+                                <tr><td><input id="verbirregular-checkbox" type="checkbox" name="verbirregular"><label for="verbirregular-checkbox">不规则动词</label></td></tr>
                             </table>
                             <hr>
                             <div id="verb-conjugation-type-group" class="options-group">
                             <table style="width:100%" >
                                 <tr>
-                                    <td><input id="verbpresent-checkbox" type="checkbox" name="verbpresent" class="verb-has-variations"><label for="verbpresent-checkbox">Present tense</label></td>
-                                    <td rowspan="3"class="settings-error-text display-none">*Must choose at least 1 option from this category</td>
+                                    <td><input id="verbpresent-checkbox" type="checkbox" name="verbpresent" class="verb-has-variations"><label for="verbpresent-checkbox">现在时</label></td>
+                                    <td rowspan="3"class="settings-error-text display-none">*此类别至少需选择 1 项</td>
                                 </tr>
-                                <tr><td><input id="verbpast-checkbox" type="checkbox" name="verbpast" class="verb-has-variations"><label for="verbpast-checkbox">Past tense</label></td></tr>
-                                <tr><td><input id="verbte-checkbox" type="checkbox" name="verbte"><label for="verbte-checkbox">て-form</label></td></tr>
-                                <tr><td><input id="verbvolitional-checkbox" type="checkbox" name="verbvolitional" class="verb-has-politeness"><label for="verbvolitional-checkbox">Volitional (~よう)</label></td></tr>
+                                <tr><td><input id="verbpast-checkbox" type="checkbox" name="verbpast" class="verb-has-variations"><label for="verbpast-checkbox">过去时</label></td></tr>
+                                <tr><td><input id="verbte-checkbox" type="checkbox" name="verbte"><label for="verbte-checkbox">て形</label></td></tr>
+                                <tr><td><input id="verbvolitional-checkbox" type="checkbox" name="verbvolitional" class="verb-has-politeness"><label for="verbvolitional-checkbox">意志形 (~よう)</label></td></tr>
                             </table>
                             <div class="advanced-section">
-                                <div id="advanced-text">ADVANCED</div>
-                                <div class="advanced-option"><input id="verbpassive-checkbox" type="checkbox" name="verbpassive" class="verb-has-variations"><label for="verbpassive-checkbox">Passive (~られる)</label></div>
-                                <div class="advanced-option"><input id="verbcausative-checkbox" type="checkbox" name="verbcausative" class="verb-has-variations"><label for="verbcausative-checkbox">Causative (~させる)</label></div>
-                                <div class="advanced-option"><input id="verbcausativepassive-checkbox" type="checkbox" name="verbcausativepassive" class="verb-has-variations"><label for="verbcausativepassive-checkbox">Causative-Passive (~させられる)</label></div>
-                                <div class="advanced-option"><input id="verbpotential-checkbox" type="checkbox" name="verbpotential" class="verb-has-variations"><label for="verbpotential-checkbox">Potential (~られる/れる)</label></div>
-                                <div class="advanced-option"><input id="verbimperative-checkbox" type="checkbox" name="verbimperative"><label for="verbimperative-checkbox">Imperative (~ろ)</label></div>
+                                <div id="advanced-text">高级</div>
+                                <div class="advanced-option"><input id="verbpassive-checkbox" type="checkbox" name="verbpassive" class="verb-has-variations"><label for="verbpassive-checkbox">被动形 (~られる)</label></div>
+                                <div class="advanced-option"><input id="verbcausative-checkbox" type="checkbox" name="verbcausative" class="verb-has-variations"><label for="verbcausative-checkbox">使役形 (~させる)</label></div>
+                                <div class="advanced-option"><input id="verbcausativepassive-checkbox" type="checkbox" name="verbcausativepassive" class="verb-has-variations"><label for="verbcausativepassive-checkbox">使役被动形 (~させられる)</label></div>
+                                <div class="advanced-option"><input id="verbpotential-checkbox" type="checkbox" name="verbpotential" class="verb-has-variations"><label for="verbpotential-checkbox">可能形 (~られる/れる)</label></div>
+                                <div class="advanced-option"><input id="verbimperative-checkbox" type="checkbox" name="verbimperative"><label for="verbimperative-checkbox">命令形 (~ろ)</label></div>
                             </div>
                             </div>
                             <div id="verb-variations-container">
@@ -123,81 +123,81 @@
                                     <hr>
                                     <table style="width:100%">
                                         <tr>
-                                            <td><input id="verbaffirmative-checkbox" type="checkbox" name="verbaffirmative"><label for="verbaffirmative-checkbox">Affirmative</label></td>
-                                            <td rowspan="2"class="settings-error-text display-none">*Must choose at least 1 option from this category</td>
+                                            <td><input id="verbaffirmative-checkbox" type="checkbox" name="verbaffirmative"><label for="verbaffirmative-checkbox">肯定</label></td>
+                                            <td rowspan="2"class="settings-error-text display-none">*此类别至少需选择 1 项</td>
                                         </tr>
-                                        <tr><td><input id="verbnegative-checkbox" type="checkbox" name="verbnegative"><label for="verbnegative-checkbox">Negative</label></td></tr>
+                                        <tr><td><input id="verbnegative-checkbox" type="checkbox" name="verbnegative"><label for="verbnegative-checkbox">否定</label></td></tr>
                                     </table>
                                 </div>
                                 <div id="verb-politeness-container" class="options-group">
                                     <hr>
                                     <table style="width:100%">
                                         <tr>
-                                            <td><input id="verbplain-checkbox" type="checkbox" name="verbplain"><label for="verbplain-checkbox">Plain</label></td>
-                                            <td rowspan="2"class="settings-error-text display-none">*Must choose at least 1 option from this category</td>
+                                            <td><input id="verbplain-checkbox" type="checkbox" name="verbplain"><label for="verbplain-checkbox">简体</label></td>
+                                            <td rowspan="2"class="settings-error-text display-none">*此类别至少需选择 1 项</td>
                                         </tr>
-                                        <tr><td><input id="verbpolite-checkbox" type="checkbox" name="verbpolite"><label for="verbpolite-checkbox">Polite</label></td></tr>
+                                        <tr><td><input id="verbpolite-checkbox" type="checkbox" name="verbpolite"><label for="verbpolite-checkbox">敬体</label></td></tr>
                                     </table>
                                 </div>
                             </div>
                         </div>
                         <div id="adjectives-h3-container">
-                            <input id="adjectives-checkbox" type="checkbox" name="adjective"><label for="adjectives-checkbox"><h3>Adjectives</h3></label>
+                            <input id="adjectives-checkbox" type="checkbox" name="adjective"><label for="adjectives-checkbox"><h3>形容词</h3></label>
                         </div>
                         <div class="options-indent" id="adjective-options-container">
                             <table style="width:100%" class="options-group" id="adjective-type-group">
                                 <tr>
-                                    <td><input id="adjectivei-checkbox" type="checkbox" name="adjectivei"><label for="adjectivei-checkbox">い-adjectives</label></td>
-                                    <td rowspan="3"class="settings-error-text display-none">*Must choose at least 1 option from this category</td>
+                                    <td><input id="adjectivei-checkbox" type="checkbox" name="adjectivei"><label for="adjectivei-checkbox">い形容词</label></td>
+                                    <td rowspan="3"class="settings-error-text display-none">*此类别至少需选择 1 项</td>
                                 </tr>
-                                <tr><td><input id="adjectivena-checkbox" type="checkbox" name="adjectivena"><label for="adjectivena-checkbox">な-adjectives</label></td></tr>
-                                <tr><td><input id="adjectiveirregular-checkbox" type="checkbox" name="adjectiveirregular"><label for="adjectiveirregular-checkbox">Irregular adjectives</label></td></tr>
+                                <tr><td><input id="adjectivena-checkbox" type="checkbox" name="adjectivena"><label for="adjectivena-checkbox">な形容词</label></td></tr>
+                                <tr><td><input id="adjectiveirregular-checkbox" type="checkbox" name="adjectiveirregular"><label for="adjectiveirregular-checkbox">不规则形容词</label></td></tr>
                             </table>
                             <hr>
                             <table style="width:100%" class="options-group" id="adjective-conjugation-type-group">
                                 <tr>
-                                    <td><input id="adjectivepresent-checkbox" type="checkbox" name="adjectivepresent" class="adjective-has-variations"><label for="adjectivepresent-checkbox">Present tense</label></td>
-                                    <td rowspan="3"class="settings-error-text display-none">*Must choose at least 1 option from this category</td>
+                                    <td><input id="adjectivepresent-checkbox" type="checkbox" name="adjectivepresent" class="adjective-has-variations"><label for="adjectivepresent-checkbox">现在时</label></td>
+                                    <td rowspan="3"class="settings-error-text display-none">*此类别至少需选择 1 项</td>
                                 </tr>
-                                <tr><td><input id="adjectivepast-checkbox" type="checkbox" name="adjectivepast" class="adjective-has-variations"><label for="adjectivepast-checkbox">Past tense</label></td></tr>
-                                <tr><td><input id="adjectiveadverb-checkbox" type="checkbox" name="adjectiveadverb"><label for="adjectiveadverb-checkbox">Adverb</td></tr>
+                                <tr><td><input id="adjectivepast-checkbox" type="checkbox" name="adjectivepast" class="adjective-has-variations"><label for="adjectivepast-checkbox">过去时</label></td></tr>
+                                <tr><td><input id="adjectiveadverb-checkbox" type="checkbox" name="adjectiveadverb"><label for="adjectiveadverb-checkbox">副词形</td></tr>
                             </table>
                             <div id="adjective-variations-container">
                                 <div class="options-group">
                                 <hr>
                                 <table style="width:100%">
                                     <tr>
-                                        <td><input id="adjectiveaffirmative-checkbox" type="checkbox" name="adjectiveaffirmative"><label for="adjectiveaffirmative-checkbox">Affirmative</label></td>
-                                        <td rowspan="2"class="settings-error-text display-none">*Must choose at least 1 option from this category</td>
+                                        <td><input id="adjectiveaffirmative-checkbox" type="checkbox" name="adjectiveaffirmative"><label for="adjectiveaffirmative-checkbox">肯定</label></td>
+                                        <td rowspan="2"class="settings-error-text display-none">*此类别至少需选择 1 项</td>
                                     </tr>
-                                    <tr><td><input id="adjectivenegative-checkbox" type="checkbox" name="adjectivenegative"><label for="adjectivenegative-checkbox">Negative</label></td></tr>
+                                    <tr><td><input id="adjectivenegative-checkbox" type="checkbox" name="adjectivenegative"><label for="adjectivenegative-checkbox">否定</label></td></tr>
                                 </table>
                                 </div>
                                 <div class="options-group">
                                 <hr>
                                 <table style="width:100%">
                                     <tr>
-                                        <td><input id="adjectiveplain-checkbox" type="checkbox" name="adjectiveplain"><label for="adjectiveplain-checkbox">Plain</label></td>
-                                        <td rowspan="2"class="settings-error-text display-none">*Must choose at least 1 option from this category</td>
+                                        <td><input id="adjectiveplain-checkbox" type="checkbox" name="adjectiveplain"><label for="adjectiveplain-checkbox">简体</label></td>
+                                        <td rowspan="2"class="settings-error-text display-none">*此类别至少需选择 1 项</td>
                                     </tr>
-                                    <tr><td><input id="adjectivepolite-checkbox" type="checkbox" name="adjectivepolite"><label for="adjectivepolite-checkbox">Polite</label></td></tr>
+                                    <tr><td><input id="adjectivepolite-checkbox" type="checkbox" name="adjectivepolite"><label for="adjectivepolite-checkbox">敬体</label></td></tr>
                                 </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div id="back-button-container">
-                        <button type="submit" id="back-button">Back ↩</button>
+                        <button type="submit" id="back-button">返回 ↩</button>
                     </div>    
                 </form>
             </div>
         </div>
         <div id="donation-section" class="display-none">
-            <p class="footer-text">This app's <a href="https://github.com/baileysnyder/japanese-conjugation" target="_blank">source code</a> is available to use under the GPL-3.0 license.</p>
-            <p class="footer-text">If you've found this app useful and would like to help support it, please consider donating!</p>
+            <p class="footer-text">本应用的<a href="https://github.com/baileysnyder/japanese-conjugation" target="_blank">源代码</a>遵循 GPL-3.0 许可证开放使用。</p>
+            <p class="footer-text">如果您觉得本应用有用并希望支持它，请考虑捐赠！</p>
             <form action="https://www.paypal.com/donate" method="post" target="_top">
                 <input type="hidden" name="hosted_button_id" value="D3QUUDNRVJYLL" />
-                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="通过 PayPal 捐赠" />
             </form>
         </div>
     </div>

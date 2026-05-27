@@ -202,7 +202,7 @@ function optionsGroupCheckError(groupElement) {
 	checkInputsAndToggleError(
 		inputs,
 		errorElement,
-		"*Must choose at least 1 option from this category",
+		"*此类别至少需选择 1 项",
 		false
 	);
 }
@@ -225,7 +225,7 @@ function verbAndAdjCheckError() {
 	checkInputsAndToggleError(
 		inputs,
 		errorElement,
-		"*Must choose at least 1 option from this category",
+		"*此类别至少需选择 1 项",
 		false
 	);
 }
@@ -274,7 +274,7 @@ function verbPresAffPlainCheckError() {
 		toggleError(
 			true,
 			errorElement,
-			"*Invalid combination: present, affirmative, plain"
+			"*无效组合：现在时、肯定、简体"
 		);
 		// These inputs could be hidden because the parent "Verb" option is unchecked, so check to enable back button
 		checkToEnableBackButton();
@@ -301,7 +301,7 @@ function adjPresAffPlainCheckError() {
 		toggleError(
 			true,
 			errorElement,
-			"*Invalid combination: い/irregular, present, affirmative, plain"
+			"*无效组合：い/不规则、现在时、肯定、简体"
 		);
 		// element could be hidden because verb is unchecked, so check to enable back button
 		checkToEnableBackButton();

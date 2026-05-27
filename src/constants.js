@@ -4,16 +4,16 @@ export const PARTS_OF_SPEECH = Object.freeze({
 });
 
 export const CONJUGATION_TYPES = Object.freeze({
-	present: "Present",
-	past: "Past",
-	te: "て-form",
-	adverb: "Adverb",
-	volitional: "Volitional",
-	passive: "Passive",
-	causative: "Causative",
-	potential: "Potential",
-	imperative: "Imperative",
-	causativePassive: "Causative-Passive",
+	present: "现在时",
+	past: "过去时",
+	te: "て形",
+	adverb: "副词形",
+	volitional: "意志形",
+	passive: "被动形",
+	causative: "使役形",
+	potential: "可能形",
+	imperative: "命令形",
+	causativePassive: "使役被动形",
 });
 
 // Used to calculate maxScoreObjectsV2.
