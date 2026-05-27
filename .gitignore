@@ -2,3 +2,5 @@
 /dist
 /hot-reload-temp
 /.parcel-cache
+/data
+/scripts
