@@ -48,6 +48,8 @@
                             <p id="status-text">正确</p>
                         </div>
                     </div>
+                    <div id="per-question-tutorial" class="display-none">
+                    </div>
                     <div id="input-container">
                         <div id="input-tooltip" class="tooltip">输入无效。仅可使用日语假名和汉字。</div>
                         <input id="main-text-input" type="text" maxlength="30" aria-label="Answer">
@@ -55,9 +57,9 @@
                     <div id="settings-container">
                         <div id="settings-child-container">
                             <table id="settings-table">
-                                <td style="width:29%"></td>
+                                <td style="width:22%"><button id="tutorial-button">教程</button></td>
                                 <td style="width:42%"id="press-any-key-text" class="display-none">按 Enter/Return 继续</td>
-                                <td style="width:29%"><button id="options-button">设置 ⚙️</button></td>
+                                <td style="width:22%"><button id="options-button">设置 ⚙️</button></td>
                             </table>
                         </div>
                     </div>
@@ -190,6 +192,14 @@
                         <button type="submit" id="back-button">返回 ↩</button>
                     </div>    
                 </form>
+            </div>
+            <div id="tutorial-view" class="display-none">
+                <h2>变形教程</h2>
+                <div id="tutorial-content">
+                </div>
+                <div id="tutorial-back-button-container">
+                    <button type="button" id="tutorial-back-button">返回 ↩</button>
+                </div>
             </div>
         </div>
         <div id="donation-section" class="display-none">

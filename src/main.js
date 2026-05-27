@@ -20,6 +20,11 @@ import {
 import { wordData } from "./wordData.js";
 import { CONJUGATION_TYPES, PARTS_OF_SPEECH } from "./constants.js";
 import { toggleDisplayNone, toggleBackgroundNone } from "./utils.js";
+import {
+	getTutorialKey,
+	tutorialSections,
+	tutorialRuleMap,
+} from "./tutorialData.js";
 
 const isTouch = "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
 document.getElementById("press-any-key-text").textContent = isTouch
@@ -32,6 +37,7 @@ const SCREENS = Object.freeze({
 	// Incorrect and correct answers are considered the same "results" screen
 	results: 1,
 	settings: 2,
+	tutorial: 3,
 });
 
 function wordTypeToDisplayText(type) {
@@ -1581,6 +1587,7 @@ function updateStatusBoxes(word, entryText) {
 			word.conjugation.validAnswers[0] +
 			" ○";
 	}
+	showPerQuestionTutorial(word);
 }
 
 // If this valid answer is in a non-standard form worth pointing out to the user,
@@ -1624,6 +1631,131 @@ function initApp() {
 	new ConjugationApp(wordData);
 }
 
+function renderTutorial() {
+	const container = document.getElementById("tutorial-content");
+	let html = "";
+
+	for (const section of tutorialSections) {
+		html += `<div class="tutorial-section">`;
+		html += `<h3 class="tutorial-section-title">${section.title}</h3>`;
+		html += `<p class="tutorial-section-desc">${section.description}</p>`;
+
+		for (const group of section.groups) {
+			html += `<div class="tutorial-group">`;
+			html += `<h4 class="tutorial-group-title">${group.title}</h4>`;
+
+			for (const rule of group.rules) {
+				html += `<div class="tutorial-rule">`;
+				html += `<div class="tutorial-rule-title">${rule.title}</div>`;
+				html += `<div class="tutorial-rule-formula"><span class="tutorial-label">公式：</span>${rule.formula}</div>`;
+				html += `<div class="tutorial-rule-explanation">${rule.explanation}</div>`;
+				html += `<div class="tutorial-rule-example"><span class="tutorial-label">例：</span>${rule.example}</div>`;
+				html += `</div>`;
+			}
+
+			html += `</div>`;
+		}
+
+		html += `</div>`;
+	}
+
+	container.innerHTML = html;
+}
+
+// Convert Chinese display value back to English key for tutorial lookup
+function getConjugationTypeKey(displayValue) {
+	for (const [key, value] of Object.entries(CONJUGATION_TYPES)) {
+		if (value === displayValue) return key;
+	}
+	return displayValue;
+}
+
+function showPerQuestionTutorial(word) {
+	const conjugationType = getConjugationTypeKey(word.conjugation.type);
+	const wordType = word.wordJSON.type;
+	let affirmative = word.conjugation.affirmative;
+	let polite = word.conjugation.polite;
+
+	// For irregular verbs, try to find specific tutorial key
+	let key;
+	if (wordType === "irv") {
+		key = getIrregularTutorialKey(word);
+	} else {
+		key = getTutorialKey(wordType, conjugationType, affirmative, polite);
+	}
+
+	const rule = tutorialRuleMap[key];
+	const container = document.getElementById("per-question-tutorial");
+
+	if (rule) {
+		container.innerHTML = `
+			<div class="per-question-rule">
+				<div class="per-question-rule-title">${rule.title}</div>
+				<div class="per-question-rule-formula"><span class="tutorial-label">公式：</span>${rule.formula}</div>
+				<div class="per-question-rule-explanation">${rule.explanation}</div>
+			</div>`;
+		toggleDisplayNone(container, false);
+	} else {
+		toggleDisplayNone(container, true);
+	}
+}
+
+function getIrregularTutorialKey(word) {
+	const hiraganaWord = toHiragana(word.wordJSON.kanji);
+	const type = word.conjugation.type;
+
+	if (hiraganaWord === "する" || hiraganaWord.endsWith("する")) {
+		if (type === CONJUGATION_TYPES.present) return "irv-suru-present";
+		if (type === CONJUGATION_TYPES.past) return "irv-suru-past";
+		if (type === CONJUGATION_TYPES.te) return "irv-suru-te";
+		if (type === CONJUGATION_TYPES.volitional) return "irv-suru-volitional";
+		if (type === CONJUGATION_TYPES.passive) return "irv-suru-passive";
+		if (type === CONJUGATION_TYPES.causative) return "irv-suru-causative";
+		if (type === CONJUGATION_TYPES.causativePassive)
+			return "irv-suru-causativePassive";
+		if (type === CONJUGATION_TYPES.potential) return "irv-suru-potential";
+		if (type === CONJUGATION_TYPES.imperative) return "irv-suru-imperative";
+	}
+
+	const kanjiWord = toKanjiPlusHiragana(word.wordJSON.kanji);
+	if (hiraganaWord === "くる" || kanjiWord === "来る") {
+		if (type === CONJUGATION_TYPES.present) return "irv-kuru-present";
+		if (type === CONJUGATION_TYPES.past) return "irv-kuru-past";
+		if (type === CONJUGATION_TYPES.te) return "irv-kuru-te";
+		if (type === CONJUGATION_TYPES.volitional) return "irv-kuru-volitional";
+		if (type === CONJUGATION_TYPES.passive) return "irv-kuru-passive";
+		if (type === CONJUGATION_TYPES.causative) return "irv-kuru-causative";
+		if (type === CONJUGATION_TYPES.potential) return "irv-kuru-potential";
+		if (type === CONJUGATION_TYPES.imperative) return "irv-kuru-imperative";
+	}
+
+	if (
+		hiraganaWord === "いく" ||
+		hiraganaWord === "行く" ||
+		hiraganaWord.endsWith("行く") ||
+		hiraganaWord.endsWith("いく")
+	) {
+		if (type === CONJUGATION_TYPES.te || type === CONJUGATION_TYPES.past)
+			return "irv-iku-te";
+	}
+
+	if (hiraganaWord === "ある") {
+		if (
+			type === CONJUGATION_TYPES.present &&
+			word.conjugation.affirmative === false
+		)
+			return "irv-aru-negative";
+	}
+
+	// Fall back to regular godan rules for irregular verbs
+	return getTutorialKey(
+		"u",
+		word.conjugation.type,
+		word.conjugation.affirmative,
+		word.conjugation.polite
+	);
+}
+
 class ConjugationApp {
 	constructor(words) {
 		const mainInput = document.getElementById("main-text-input");
@@ -1638,6 +1770,12 @@ class ConjugationApp {
 		document
 			.getElementById("options-form")
 			.addEventListener("submit", (e) => this.backButtonClicked(e));
+		document
+			.getElementById("tutorial-button")
+			.addEventListener("click", (e) => this.tutorialButtonClicked(e));
+		document
+			.getElementById("tutorial-back-button")
+			.addEventListener("click", (e) => this.tutorialBackButtonClicked(e));
 
 		document
 			.getElementById("current-streak-text")
@@ -1687,6 +1825,7 @@ class ConjugationApp {
 
 		toggleDisplayNone(document.getElementById("press-any-key-text"), true);
 		toggleDisplayNone(document.getElementById("status-box"), true);
+		toggleDisplayNone(document.getElementById("per-question-tutorial"), true);
 
 		if (this.state.currentStreak0OnReset) {
 			document.getElementById("current-streak-text").textContent = "0";
@@ -1863,6 +2002,22 @@ class ConjugationApp {
 		toggleDisplayNone(document.getElementById("options-view"), true);
 		toggleDisplayNone(document.getElementById("donation-section"), true);
 
+		this.loadMainView();
+	}
+
+	tutorialButtonClicked(e) {
+		this.state.activeScreen = SCREENS.tutorial;
+		renderTutorial();
+		toggleDisplayNone(document.getElementById("main-view"), true);
+		toggleDisplayNone(document.getElementById("tutorial-view"), false);
+		toggleDisplayNone(document.getElementById("donation-section"), false);
+	}
+
+	tutorialBackButtonClicked(e) {
+		e.preventDefault();
+		toggleDisplayNone(document.getElementById("main-view"), false);
+		toggleDisplayNone(document.getElementById("tutorial-view"), true);
+		toggleDisplayNone(document.getElementById("donation-section"), true);
 		this.loadMainView();
 	}
 

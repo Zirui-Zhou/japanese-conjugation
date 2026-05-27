@@ -541,3 +541,135 @@ On larger screens, we allow verb-type and status-container to always take up scr
 		margin-top: 1rem;
 	}
 }
+
+#tutorial-button {
+	float: left;
+}
+
+/* ===== Tutorial Styles ===== */
+
+#tutorial-view {
+	padding-left: 0.73rem;
+	padding-right: 0.73rem;
+	padding-bottom: 0.55rem;
+	color: var(--whiteTextColor);
+	max-height: 70vh;
+	overflow-y: auto;
+}
+
+#tutorial-content {
+	font-size: 0.8rem;
+	text-align: left;
+}
+
+.tutorial-section {
+	margin-bottom: 1.2rem;
+}
+
+.tutorial-section-title {
+	font-size: 1rem;
+	color: #ffc439;
+	margin-bottom: 0.27rem;
+	margin-top: 0.9rem;
+	text-align: left;
+}
+
+.tutorial-section-desc {
+	font-size: 0.75rem;
+	color: rgb(180, 180, 180);
+	margin-bottom: 0.55rem;
+	margin-top: 0.18rem;
+	line-height: 1.4;
+}
+
+.tutorial-group {
+	margin-bottom: 0.73rem;
+}
+
+.tutorial-group-title {
+	font-size: 0.85rem;
+	color: rgb(200, 200, 200);
+	margin-bottom: 0.36rem;
+	margin-top: 0.55rem;
+	padding-bottom: 0.18rem;
+	border-bottom: 1px solid rgb(66, 66, 66);
+}
+
+.tutorial-rule {
+	background: rgb(54, 53, 51);
+	border-radius: 0.36rem;
+	padding: 0.45rem 0.55rem;
+	margin-bottom: 0.36rem;
+	border-left: 3px solid #ffc439;
+}
+
+.tutorial-rule-title {
+	font-size: 0.8rem;
+	font-weight: bold;
+	color: rgb(232, 232, 232);
+	margin-bottom: 0.18rem;
+}
+
+.tutorial-rule-formula {
+	font-size: 0.85rem;
+	color: #ffc439;
+	margin-bottom: 0.18rem;
+}
+
+.tutorial-rule-explanation {
+	font-size: 0.75rem;
+	color: rgb(200, 200, 200);
+	margin-bottom: 0.18rem;
+	line-height: 1.4;
+}
+
+.tutorial-rule-example {
+	font-size: 1rem;
+	color: rgb(180, 220, 255);
+	font-family: "Noto Sans JP", sans-serif;
+}
+
+.tutorial-label {
+	color: rgb(150, 150, 150);
+	font-family: "Open Sans", sans-serif;
+	font-size: 0.73rem;
+}
+
+#tutorial-back-button-container {
+	display: inline-block;
+	width: 100%;
+	margin-top: 0.45rem;
+}
+
+/* ===== Per-Question Tutorial Styles ===== */
+
+#per-question-tutorial {
+	margin-top: 0.45rem;
+	text-align: left;
+}
+
+.per-question-rule {
+	background: rgb(54, 53, 51);
+	border-radius: 0.36rem;
+	padding: 0.45rem 0.55rem;
+	border-left: 3px solid rgb(0, 180, 240);
+}
+
+.per-question-rule-title {
+	font-size: 0.8rem;
+	font-weight: bold;
+	color: rgb(232, 232, 232);
+	margin-bottom: 0.15rem;
+}
+
+.per-question-rule-formula {
+	font-size: 0.85rem;
+	color: #ffc439;
+	margin-bottom: 0.15rem;
+}
+
+.per-question-rule-explanation {
+	font-size: 0.75rem;
+	color: rgb(200, 200, 200);
+	line-height: 1.4;
+}
