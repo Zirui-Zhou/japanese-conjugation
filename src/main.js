@@ -1631,35 +1631,166 @@ function initApp() {
 	new ConjugationApp(wordData);
 }
 
+// Map section title to word type for filtering
+function getSectionWordType(sectionTitle) {
+	if (sectionTitle.startsWith("五段")) return "u";
+	if (sectionTitle.startsWith("一段")) return "ru";
+	if (sectionTitle.startsWith("不规则动词")) return "irv";
+	if (sectionTitle.startsWith("い形容词")) return "i";
+	if (sectionTitle.startsWith("な形容词")) return "na";
+	if (sectionTitle.startsWith("不规则形容词")) return "ira";
+	return null;
+}
+
+// Map group title to conjugation type for filtering
+function getGroupConjugationType(groupTitle) {
+	if (groupTitle.startsWith("现在时")) return "present";
+	if (groupTitle.startsWith("过去时")) return "past";
+	if (groupTitle.startsWith("て形")) return "te";
+	if (groupTitle.startsWith("意志形")) return "volitional";
+	if (groupTitle.startsWith("被动形")) return "passive";
+	if (groupTitle.startsWith("使役被动")) return "causativePassive";
+	if (groupTitle.startsWith("使役形")) return "causative";
+	if (groupTitle.startsWith("可能形")) return "potential";
+	if (groupTitle.startsWith("命令形")) return "imperative";
+	if (groupTitle.startsWith("副词形")) return "adverb";
+	if (groupTitle.startsWith("する")) return "suru";
+	if (groupTitle.startsWith("来る")) return "kuru";
+	if (groupTitle.startsWith("行く")) return "iku";
+	if (groupTitle.startsWith("ある")) return "aru";
+	if (groupTitle.startsWith("敬语动词")) return "honorific";
+	if (groupTitle.startsWith("ござる")) return "gozaru";
+	if (groupTitle.startsWith("くれる")) return "kureru";
+	if (groupTitle.startsWith("いい")) return "ii";
+	return null;
+}
+
+function getFilterValues() {
+	const activeValues = {};
+	const groups = document.querySelectorAll(".tutorial-filter-row");
+	groups.forEach(row => {
+		const groupName = row.dataset.filterGroup;
+		const activeTags = row.querySelectorAll(".tutorial-filter-tag.active");
+		const values = Array.from(activeTags).map(t => t.dataset.value);
+		if (values.includes("")) {
+			activeValues[groupName] = "";
+		} else {
+			activeValues[groupName] = values;
+		}
+	});
+	return {
+		wordType: activeValues.wordType || "",
+		conjugationType: activeValues.conjugationType || "",
+		affirmative: activeValues.affirmative || "",
+		polite: activeValues.polite || "",
+	};
+}
+
+function ruleMatchesPolarity(ruleKey, filterAffirmative) {
+	if (!filterAffirmative || (Array.isArray(filterAffirmative) && filterAffirmative.length === 0)) return true;
+	const parts = ruleKey.split("-");
+	const aff = parts[2];
+	if (Array.isArray(filterAffirmative)) return filterAffirmative.includes(aff);
+	if (filterAffirmative === "true") return aff === "true";
+	if (filterAffirmative === "false") return aff === "false";
+	return true;
+}
+
+function ruleMatchesPoliteness(ruleKey, filterPolite) {
+	if (!filterPolite || (Array.isArray(filterPolite) && filterPolite.length === 0)) return true;
+	const parts = ruleKey.split("-");
+	const pol = parts[3];
+	if (Array.isArray(filterPolite)) return filterPolite.includes(pol);
+	if (filterPolite === "true") return pol === "true";
+	if (filterPolite === "false") return pol === "false";
+	return true;
+}
+
+function ruleMatchesConjugationType(ruleKey, filterConjType) {
+	if (!filterConjType || (Array.isArray(filterConjType) && filterConjType.length === 0)) return true;
+	const parts = ruleKey.split("-");
+	if (Array.isArray(filterConjType)) return filterConjType.some(ct => parts.includes(ct));
+	return parts.includes(filterConjType);
+}
+
 function renderTutorial() {
+	const filters = getFilterValues();
 	const container = document.getElementById("tutorial-content");
 	let html = "";
+	let anyVisible = false;
 
 	for (const section of tutorialSections) {
-		html += `<div class="tutorial-section">`;
-		html += `<h3 class="tutorial-section-title">${section.title}</h3>`;
-		html += `<p class="tutorial-section-desc">${section.description}</p>`;
-
-		for (const group of section.groups) {
-			html += `<div class="tutorial-group">`;
-			html += `<h4 class="tutorial-group-title">${group.title}</h4>`;
-
-			for (const rule of group.rules) {
-				html += `<div class="tutorial-rule">`;
-				html += `<div class="tutorial-rule-title">${rule.title}</div>`;
-				html += `<div class="tutorial-rule-formula"><span class="tutorial-label">公式：</span>${rule.formula}</div>`;
-				html += `<div class="tutorial-rule-explanation">${rule.explanation}</div>`;
-				html += `<div class="tutorial-rule-example"><span class="tutorial-label">例：</span>${rule.example}</div>`;
-				html += `</div>`;
+		const sectionWordType = getSectionWordType(section.title);
+		if (filters.wordType) {
+			if (Array.isArray(filters.wordType)) {
+				if (!filters.wordType.includes(sectionWordType)) continue;
+			} else if (sectionWordType !== filters.wordType) {
+				continue;
 			}
-
-			html += `</div>`;
 		}
 
-		html += `</div>`;
+		let sectionHtml = "";
+		let sectionHasContent = false;
+
+		for (const group of section.groups) {
+			const groupConjType = getGroupConjugationType(group.title);
+			if (
+				filters.conjugationType &&
+				filters.conjugationType.length > 0 &&
+				!filters.conjugationType.includes(groupConjType)
+			) {
+				const hasMatchingRule = group.rules.some(rule => {
+					const parts = rule.key.split("-");
+					return filters.conjugationType.some(ct => parts.includes(ct));
+				});
+				if (!hasMatchingRule) continue;
+			}
+
+			let groupHtml = "";
+			let groupHasContent = false;
+
+			for (const rule of group.rules) {
+				if (
+					!ruleMatchesConjugationType(rule.key, filters.conjugationType) ||
+					!ruleMatchesPolarity(rule.key, filters.affirmative) ||
+					!ruleMatchesPoliteness(rule.key, filters.polite)
+				)
+					continue;
+
+				groupHtml += `<div class="tutorial-rule">`;
+				groupHtml += `<div class="tutorial-rule-title">${rule.title}</div>`;
+				groupHtml += `<div class="tutorial-rule-formula"><span class="tutorial-label">公式：</span>${rule.formula}</div>`;
+				groupHtml += `<div class="tutorial-rule-explanation">${rule.explanation}</div>`;
+				groupHtml += `<div class="tutorial-rule-example"><span class="tutorial-label">例：</span>${rule.example}</div>`;
+				groupHtml += `</div>`;
+				groupHasContent = true;
+			}
+
+			if (groupHasContent) {
+				sectionHtml += `<div class="tutorial-group">`;
+				sectionHtml += `<h4 class="tutorial-group-title">${group.title}</h4>`;
+				sectionHtml += groupHtml;
+				sectionHtml += `</div>`;
+				sectionHasContent = true;
+			}
+		}
+
+		if (sectionHasContent) {
+			html += `<div class="tutorial-section">`;
+			html += `<h3 class="tutorial-section-title">${section.title}</h3>`;
+			html += `<p class="tutorial-section-desc">${section.description}</p>`;
+			html += sectionHtml;
+			html += `</div>`;
+			anyVisible = true;
+		}
+	}
+
+	if (!anyVisible) {
+		html = `<p style="color: rgb(150,150,150); text-align: center; padding: 1rem;">没有匹配的规则，请调整筛选条件。</p>`;
 	}
 
 	container.innerHTML = html;
+	updateFilterSummary();
 }
 
 // Convert Chinese display value back to English key for tutorial lookup
@@ -1747,6 +1878,11 @@ function getIrregularTutorialKey(word) {
 			return "irv-aru-negative";
 	}
 
+	if (hiraganaWord === "くれる") {
+		if (type === CONJUGATION_TYPES.imperative)
+			return "irv-kureru-imperative";
+	}
+
 	// Fall back to regular godan rules for irregular verbs
 	return getTutorialKey(
 		"u",
@@ -1754,6 +1890,80 @@ function getIrregularTutorialKey(word) {
 		word.conjugation.affirmative,
 		word.conjugation.polite
 	);
+}
+
+
+function handleFilterTagClick(e) {
+	const tag = e.target.closest(".tutorial-filter-tag");
+	if (!tag || tag.id === "tutorial-filter-reset") return;
+
+	const row = tag.closest(".tutorial-filter-row");
+	const allTags = row.querySelectorAll(".tutorial-filter-tag");
+	const allTag = row.querySelector('.tutorial-filter-tag[data-value=""]');
+
+	if (tag.dataset.value === "") {
+		// Clicked "全部" — deselect all others, select "全部"
+		allTags.forEach(t => t.classList.remove("active"));
+		tag.classList.add("active");
+	} else {
+		// Clicked a specific tag — toggle it
+		tag.classList.toggle("active");
+		// Deselect "全部" if it was active
+		if (allTag) allTag.classList.remove("active");
+
+		// If no tags are selected, re-select "全部"
+		const anyActive = row.querySelectorAll(".tutorial-filter-tag.active");
+		if (anyActive.length === 0 && allTag) {
+			allTag.classList.add("active");
+		}
+	}
+
+	renderTutorial();
+}
+
+function resetTutorialFilters() {
+	const allTags = document.querySelectorAll(".tutorial-filter-tag");
+	allTags.forEach(t => t.classList.remove("active"));
+	const allAllTags = document.querySelectorAll('.tutorial-filter-tag[data-value=""]');
+	allAllTags.forEach(t => t.classList.add("active"));
+	updateFilterSummary();
+	renderTutorial();
+}
+
+function updateFilterSummary() {
+	const filters = getFilterValues();
+	const parts = [];
+
+	const groupLabels = { wordType: '词类', conjugationType: '变位', affirmative: '极性', polite: '语体' };
+
+	for (const [key, label] of Object.entries(groupLabels)) {
+		const val = filters[key];
+		if (!val || (Array.isArray(val) && val.length === 0)) continue;
+		if (Array.isArray(val)) {
+			// Get the text of active tags
+			const row = document.querySelector(`.tutorial-filter-row[data-filter-group="${key}"]`);
+			if (row) {
+				const names = [];
+				row.querySelectorAll('.tutorial-filter-tag.active').forEach(t => {
+					if (t.dataset.value) names.push(t.textContent);
+				});
+				if (names.length) parts.push(names.join('/'));
+			}
+		} else {
+			// Single string value - shouldn't happen with new tag system, but handle
+			parts.push(val);
+		}
+	}
+
+	const summary = document.getElementById('tutorial-filters-summary');
+	summary.textContent = parts.length > 0 ? parts.join(' · ') : '全部';
+}
+
+function toggleTutorialFilters() {
+	const body = document.getElementById('tutorial-filters-body');
+	const btn = document.getElementById('tutorial-filters-toggle-btn');
+	const collapsed = body.classList.toggle('collapsed');
+	btn.textContent = collapsed ? '展开 ▼' : '收起 ▲';
 }
 
 class ConjugationApp {
@@ -1774,8 +1984,17 @@ class ConjugationApp {
 			.getElementById("tutorial-button")
 			.addEventListener("click", (e) => this.tutorialButtonClicked(e));
 		document
-			.getElementById("tutorial-back-button")
+			.getElementById("tutorial-back-button-top")
 			.addEventListener("click", (e) => this.tutorialBackButtonClicked(e));
+		document
+			.getElementById("tutorial-filters")
+			.addEventListener("click", (e) => handleFilterTagClick(e));
+		document
+			.getElementById("tutorial-filter-reset")
+			.addEventListener("click", () => resetTutorialFilters());
+		document
+			.getElementById("tutorial-filters-toggle-btn")
+			.addEventListener("click", () => toggleTutorialFilters());
 
 		document
 			.getElementById("current-streak-text")
@@ -2007,10 +2226,11 @@ class ConjugationApp {
 
 	tutorialButtonClicked(e) {
 		this.state.activeScreen = SCREENS.tutorial;
+		toggleDisplayNone(document.getElementById("tutorial-filters"), false);
 		renderTutorial();
 		toggleDisplayNone(document.getElementById("main-view"), true);
 		toggleDisplayNone(document.getElementById("tutorial-view"), false);
-		toggleDisplayNone(document.getElementById("donation-section"), false);
+		toggleDisplayNone(document.getElementById("donation-section"), true);
 	}
 
 	tutorialBackButtonClicked(e) {

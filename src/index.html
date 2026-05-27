@@ -57,7 +57,7 @@
                     <div id="settings-container">
                         <div id="settings-child-container">
                             <table id="settings-table">
-                                <td style="width:22%"><button id="tutorial-button">教程</button></td>
+                                <td style="width:22%"><button id="tutorial-button">教程 📖</button></td>
                                 <td style="width:42%"id="press-any-key-text" class="display-none">按 Enter/Return 继续</td>
                                 <td style="width:22%"><button id="options-button">设置 ⚙️</button></td>
                             </table>
@@ -194,11 +194,66 @@
                 </form>
             </div>
             <div id="tutorial-view" class="display-none">
-                <h2>变形教程</h2>
-                <div id="tutorial-content">
+                <div id="tutorial-header">
+                    <h2>变形教程</h2>
+                    <div id="tutorial-header-buttons">
+                        <button type="button" id="tutorial-filter-reset" class="tutorial-header-btn">↺ 重置</button>
+                        <button type="button" id="tutorial-back-button-top" class="tutorial-header-btn">返回 ↩</button>
+                    </div>
                 </div>
-                <div id="tutorial-back-button-container">
-                    <button type="button" id="tutorial-back-button">返回 ↩</button>
+                <div id="tutorial-filters" class="display-none">
+                    <div id="tutorial-filters-toggle">
+                        <span id="tutorial-filters-summary"></span>
+                        <button type="button" id="tutorial-filters-toggle-btn">收起 ▲</button>
+                    </div>
+                    <div id="tutorial-filters-body">
+                    <div class="tutorial-filter-row" data-filter-group="wordType">
+                        <span class="tutorial-filter-label">词类</span>
+                        <div class="tutorial-filter-tags">
+                            <button class="tutorial-filter-tag active" data-value="">全部</button>
+                            <button class="tutorial-filter-tag" data-value="u">五段动词</button>
+                            <button class="tutorial-filter-tag" data-value="ru">一段动词</button>
+                            <button class="tutorial-filter-tag" data-value="irv">不规则动词</button>
+                            <button class="tutorial-filter-tag" data-value="i">い形</button>
+                            <button class="tutorial-filter-tag" data-value="na">な形</button>
+                            <button class="tutorial-filter-tag" data-value="ira">不规则形容词</button>
+                        </div>
+                    </div>
+                    <div class="tutorial-filter-row" data-filter-group="conjugationType">
+                        <span class="tutorial-filter-label">变位</span>
+                        <div class="tutorial-filter-tags">
+                            <button class="tutorial-filter-tag active" data-value="">全部</button>
+                            <button class="tutorial-filter-tag" data-value="present">现在时</button>
+                            <button class="tutorial-filter-tag" data-value="past">过去时</button>
+                            <button class="tutorial-filter-tag" data-value="te">て形</button>
+                            <button class="tutorial-filter-tag" data-value="volitional">意志形</button>
+                            <button class="tutorial-filter-tag" data-value="passive">被动形</button>
+                            <button class="tutorial-filter-tag" data-value="causative">使役形</button>
+                            <button class="tutorial-filter-tag" data-value="causativePassive">使役被动</button>
+                            <button class="tutorial-filter-tag" data-value="potential">可能形</button>
+                            <button class="tutorial-filter-tag" data-value="imperative">命令形</button>
+                            <button class="tutorial-filter-tag" data-value="adverb">副词形</button>
+                        </div>
+                    </div>
+                    <div class="tutorial-filter-row" data-filter-group="affirmative">
+                        <span class="tutorial-filter-label">极性</span>
+                        <div class="tutorial-filter-tags">
+                            <button class="tutorial-filter-tag active" data-value="">全部</button>
+                            <button class="tutorial-filter-tag" data-value="true">肯定</button>
+                            <button class="tutorial-filter-tag" data-value="false">否定</button>
+                        </div>
+                    </div>
+                    <div class="tutorial-filter-row" data-filter-group="polite">
+                        <span class="tutorial-filter-label">语体</span>
+                        <div class="tutorial-filter-tags">
+                            <button class="tutorial-filter-tag active" data-value="">全部</button>
+                            <button class="tutorial-filter-tag" data-value="false">简体</button>
+                            <button class="tutorial-filter-tag" data-value="true">敬体</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div id="tutorial-content">
                 </div>
             </div>
         </div>

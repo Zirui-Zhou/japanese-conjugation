@@ -154,7 +154,7 @@ span.rt {
 #conjugation-inquery-text {
 	font-size: 1.3rem;
 	margin-top: 0.8rem;
-	margin-bottom: 0.5rem;
+	margin-bottom: 0.36rem;
 }
 
 #status-container {
@@ -194,7 +194,7 @@ span.rt {
 	padding-top: 0.36rem;
 	margin: 0.45rem;
 	position: relative;
-	margin-bottom: 0.3rem;
+	margin-bottom: 0.5rem;
 }
 
 .tooltip-fade-animation {
@@ -510,7 +510,7 @@ On larger screens, we allow verb-type and status-container to always take up scr
 		display: block;
 	}
 	#input-container {
-		margin-bottom: 0.4rem;
+		margin-bottom: 0.5rem;
 	}
 	#conjugation-inquery-text {
 		margin-top: 1rem;
@@ -555,6 +555,168 @@ On larger screens, we allow verb-type and status-container to always take up scr
 	color: var(--whiteTextColor);
 	max-height: 70vh;
 	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: rgb(100, 100, 100) rgb(44, 43, 41);
+}
+
+#tutorial-view::-webkit-scrollbar {
+	width: 6px;
+}
+
+#tutorial-view::-webkit-scrollbar-track {
+	background: rgb(44, 43, 41);
+	border-radius: 3px;
+}
+
+#tutorial-view::-webkit-scrollbar-thumb {
+	background: rgb(100, 100, 100);
+	border-radius: 3px;
+}
+
+#tutorial-view::-webkit-scrollbar-thumb:hover {
+	background: rgb(130, 130, 130);
+}
+
+#tutorial-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: sticky;
+	top: 0;
+	background: rgb(44, 43, 41);
+	padding-top: 0.45rem;
+	padding-bottom: 0.27rem;
+	z-index: 1;
+}
+
+#tutorial-header h2 {
+	margin: 0;
+}
+
+#tutorial-filters {
+	padding: 0.45rem 0;
+	margin-bottom: 0.55rem;
+	border-bottom: 1px solid rgb(66, 66, 66);
+	position: sticky;
+	top: 2.2rem;
+	background: rgb(44, 43, 41);
+	z-index: 1;
+}
+
+#tutorial-filters-toggle {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 0.27rem;
+}
+
+#tutorial-filters-summary {
+	font-size: 0.7rem;
+	color: rgb(180, 180, 180);
+}
+
+#tutorial-filters-toggle-btn {
+	font-size: 0.65rem;
+	background: transparent;
+	border: none;
+	color: rgb(150, 150, 150);
+	cursor: pointer;
+	padding: 0.09rem 0.27rem;
+	border-radius: 0.27rem;
+}
+
+#tutorial-filters-toggle-btn:hover {
+	color: var(--whiteTextColor);
+	background: rgb(63, 63, 63);
+}
+
+#tutorial-filters-body.collapsed {
+	display: none;
+}
+
+.tutorial-filter-row {
+	display: flex;
+	gap: 0.36rem;
+	margin-bottom: 0.36rem;
+	align-items: flex-start;
+}
+
+.tutorial-filter-label {
+	font-size: 0.73rem;
+	color: rgb(150, 150, 150);
+	white-space: nowrap;
+	padding-top: 0.23rem;
+	min-width: 2rem;
+}
+
+.tutorial-filter-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.36rem;
+	flex: 1;
+}
+
+.tutorial-filter-tag {
+	padding: 0.18rem 0.45rem;
+	font-size: 0.7rem;
+	background: rgb(63, 63, 63);
+	color: rgb(180, 180, 180);
+	border: 1px solid rgb(80, 80, 80);
+	border-radius: 1rem;
+	cursor: pointer;
+	transition: background 0.15s, color 0.15s, border-color 0.15s;
+	white-space: nowrap;
+}
+
+.tutorial-filter-tag:hover {
+	background: rgb(80, 80, 80);
+	color: var(--whiteTextColor);
+}
+
+.tutorial-filter-tag.active {
+	background: #ffc439;
+	color: rgb(34, 34, 31);
+	border-color: #ffc439;
+	font-weight: 600;
+}
+
+#tutorial-header-buttons {
+	display: flex;
+	gap: 0.36rem;
+	align-items: center;
+}
+
+.tutorial-header-btn {
+	padding: 0.18rem 0.55rem;
+	font-size: 0.73rem;
+	background: rgb(63, 63, 63);
+	border: none;
+	color: var(--whiteTextColor);
+	border-radius: 0.4rem;
+	cursor: pointer;
+	box-shadow:
+		0 0.045rem 0 rgb(35, 35, 35),
+		0.045rem 0 0 rgb(35, 35, 35),
+		0.09rem 0.045rem 0 rgb(35, 35, 35),
+		0.045rem 0.09rem 0 rgb(35, 35, 35),
+		0.136rem 0.09rem 0 rgb(35, 35, 35),
+		0.09rem 0.136rem 0 rgb(35, 35, 35);
+}
+
+.tutorial-header-btn:hover {
+	background: rgb(70, 70, 70);
+}
+
+#tutorial-filter-reset {
+	background: transparent;
+	border: 1px dashed rgb(100, 100, 100);
+	color: rgb(150, 150, 150);
+	box-shadow: none;
+}
+
+#tutorial-filter-reset:hover {
+	background: rgb(63, 63, 63);
+	color: var(--whiteTextColor);
 }
 
 #tutorial-content {
@@ -611,20 +773,20 @@ On larger screens, we allow verb-type and status-container to always take up scr
 }
 
 .tutorial-rule-formula {
-	font-size: 0.85rem;
+	font-size: 0.9rem;
 	color: #ffc439;
 	margin-bottom: 0.18rem;
 }
 
 .tutorial-rule-explanation {
-	font-size: 0.75rem;
+	font-size: 0.73rem;
 	color: rgb(200, 200, 200);
 	margin-bottom: 0.18rem;
 	line-height: 1.4;
 }
 
 .tutorial-rule-example {
-	font-size: 1rem;
+	font-size: 0.83rem;
 	color: rgb(180, 220, 255);
 	font-family: "Noto Sans JP", sans-serif;
 }
@@ -635,10 +797,8 @@ On larger screens, we allow verb-type and status-container to always take up scr
 	font-size: 0.73rem;
 }
 
-#tutorial-back-button-container {
-	display: inline-block;
-	width: 100%;
-	margin-top: 0.45rem;
+.tutorial-rule s {
+	text-decoration: line-through;
 }
 
 /* ===== Per-Question Tutorial Styles ===== */

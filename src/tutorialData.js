@@ -200,7 +200,7 @@ export const tutorialSections = [
 					{
 						key: "u-causativePassive-true-false",
 						title: "使役被动形 · 肯定 · 简体",
-						formula: "あ段 + せられる（/される）",
+						formula: "あ段 + せられる<span class='tutorial-alt'>/される</span>",
 						explanation:
 							"将词尾变为あ段假名，接「せられる」。非す结尾的动词也可用省略形「される」。",
 						example: "書く → 書かせられる / 書かされる",
@@ -208,7 +208,7 @@ export const tutorialSections = [
 					{
 						key: "u-causativePassive-true-true",
 						title: "使役被动形 · 肯定 · 敬体",
-						formula: "あ段 + せられます（/されます）",
+						formula: "あ段 + せられます<span class='tutorial-alt'>/されます</span>",
 						explanation:
 							"将词尾变为あ段假名，接「せられます」或「されます」。",
 						example: "書く → 書かせられます / 書かされます",
@@ -216,7 +216,7 @@ export const tutorialSections = [
 					{
 						key: "u-causativePassive-false-false",
 						title: "使役被动形 · 否定 · 简体",
-						formula: "あ段 + せられない（/されない）",
+						formula: "あ段 + せられない<span class='tutorial-alt'>/されない</span>",
 						explanation:
 							"将词尾变为あ段假名，接「せられない」或「されない」。",
 						example: "書く → 書かせられない / 書かされない",
@@ -224,7 +224,7 @@ export const tutorialSections = [
 					{
 						key: "u-causativePassive-false-true",
 						title: "使役被动形 · 否定 · 敬体",
-						formula: "あ段 + せられません（/されません）",
+						formula: "あ段 + せられません<span class='tutorial-alt'>/されません</span>",
 						explanation:
 							"将词尾变为あ段假名，接「せられません」或「されません」。",
 						example: "書く → 書かせられません / 書かされません",
@@ -302,23 +302,23 @@ export const tutorialSections = [
 					{
 						key: "ru-present-true-true",
 						title: "现在时 · 肯定 · 敬体",
-						formula: "去る + ます",
+						formula: "<s>る</s> + ます",
 						explanation: "去掉词尾的「る」，然后接「ます」。",
 						example: "食べる → 食べます",
 					},
 					{
 						key: "ru-present-false-false",
 						title: "现在时 · 否定 · 简体",
-						formula: "去る + ない",
+						formula: "<s>る</s> + ない",
 						explanation: "去掉词尾的「る」，然后接「ない」。",
 						example: "食べる → 食べない",
 					},
 					{
 						key: "ru-present-false-true",
 						title: "现在时 · 否定 · 敬体",
-						formula: "去る + ません　或　去る + ないです",
+						formula: "<s>る</s> + ません　或　<s>る</s> + ないです",
 						explanation:
-							"方式一：去る + ません。方式二：去る + ないです。",
+							"方式一：<s>る</s> + ません。方式二：<s>る</s> + ないです。",
 						example: "食べる → 食べません / 食べないです",
 					},
 				],
@@ -329,21 +329,21 @@ export const tutorialSections = [
 					{
 						key: "ru-past-true-false",
 						title: "过去时 · 肯定 · 简体",
-						formula: "去る + た",
+						formula: "<s>る</s> + た",
 						explanation: "去掉词尾的「る」，然后接「た」。",
 						example: "食べる → 食べた",
 					},
 					{
 						key: "ru-past-true-true",
 						title: "过去时 · 肯定 · 敬体",
-						formula: "去る + ました",
+						formula: "<s>る</s> + ました",
 						explanation: "去掉词尾的「る」，然后接「ました」。",
 						example: "食べる → 食べました",
 					},
 					{
 						key: "ru-past-false-false",
 						title: "过去时 · 否定 · 简体",
-						formula: "去る + なかった",
+						formula: "<s>る</s> + なかった",
 						explanation:
 							"去掉词尾的「る」，然后接「なかった」。",
 						example: "食べる → 食べなかった",
@@ -351,9 +351,9 @@ export const tutorialSections = [
 					{
 						key: "ru-past-false-true",
 						title: "过去时 · 否定 · 敬体",
-						formula: "去る + ませんでした　或　去る + なかったです",
+						formula: "<s>る</s> + ませんでした　或　<s>る</s> + なかったです",
 						explanation:
-							"方式一：去る + ませんでした。方式二：去る + なかったです。",
+							"方式一：<s>る</s> + ませんでした。方式二：<s>る</s> + なかったです。",
 						example: "食べる → 食べませんでした / 食べなかったです",
 					},
 				],
@@ -364,7 +364,7 @@ export const tutorialSections = [
 					{
 						key: "ru-te-null-null",
 						title: "て形",
-						formula: "去る + て",
+						formula: "<s>る</s> + て",
 						explanation:
 							"去掉词尾的「る」，然后接「て」。一段动词的て形没有音变。",
 						example: "食べる → 食べて",
@@ -377,14 +377,14 @@ export const tutorialSections = [
 					{
 						key: "ru-volitional-null-false",
 						title: "意志形 · 简体",
-						formula: "去る + よう",
+						formula: "<s>る</s> + よう",
 						explanation: "去掉词尾的「る」，然后接「よう」。",
 						example: "食べる → 食べよう",
 					},
 					{
 						key: "ru-volitional-null-true",
 						title: "意志形 · 敬体",
-						formula: "去る + ましょう",
+						formula: "<s>る</s> + ましょう",
 						explanation: "去掉词尾的「る」，然后接「ましょう」。",
 						example: "食べる → 食べましょう",
 					},
@@ -396,28 +396,28 @@ export const tutorialSections = [
 					{
 						key: "ru-passive-true-false",
 						title: "被动形 · 肯定 · 简体",
-						formula: "去る + られる",
+						formula: "<s>る</s> + られる",
 						explanation: "去掉词尾的「る」，然后接「られる」。",
 						example: "食べる → 食べられる",
 					},
 					{
 						key: "ru-passive-true-true",
 						title: "被动形 · 肯定 · 敬体",
-						formula: "去る + られます",
+						formula: "<s>る</s> + られます",
 						explanation: "去掉词尾的「る」，然后接「られます」。",
 						example: "食べる → 食べられます",
 					},
 					{
 						key: "ru-passive-false-false",
 						title: "被动形 · 否定 · 简体",
-						formula: "去る + られない",
+						formula: "<s>る</s> + られない",
 						explanation: "去掉词尾的「る」，然后接「られない」。",
 						example: "食べる → 食べられない",
 					},
 					{
 						key: "ru-passive-false-true",
 						title: "被动形 · 否定 · 敬体",
-						formula: "去る + られません",
+						formula: "<s>る</s> + られません",
 						explanation:
 							"去掉词尾的「る」，然后接「られません」。",
 						example: "食べる → 食べられません",
@@ -430,28 +430,28 @@ export const tutorialSections = [
 					{
 						key: "ru-causative-true-false",
 						title: "使役形 · 肯定 · 简体",
-						formula: "去る + させる",
+						formula: "<s>る</s> + させる",
 						explanation: "去掉词尾的「る」，然后接「させる」。",
 						example: "食べる → 食べさせる",
 					},
 					{
 						key: "ru-causative-true-true",
 						title: "使役形 · 肯定 · 敬体",
-						formula: "去る + させます",
+						formula: "<s>る</s> + させます",
 						explanation: "去掉词尾的「る」，然后接「させます」。",
 						example: "食べる → 食べさせます",
 					},
 					{
 						key: "ru-causative-false-false",
 						title: "使役形 · 否定 · 简体",
-						formula: "去る + させない",
+						formula: "<s>る</s> + させない",
 						explanation: "去掉词尾的「る」，然后接「させない」。",
 						example: "食べる → 食べさせない",
 					},
 					{
 						key: "ru-causative-false-true",
 						title: "使役形 · 否定 · 敬体",
-						formula: "去る + させません",
+						formula: "<s>る</s> + させません",
 						explanation:
 							"去掉词尾的「る」，然后接「させません」。",
 						example: "食べる → 食べさせません",
@@ -464,7 +464,7 @@ export const tutorialSections = [
 					{
 						key: "ru-causativePassive-true-false",
 						title: "使役被动形 · 肯定 · 简体",
-						formula: "去る + させられる",
+						formula: "<s>る</s> + させられる",
 						explanation:
 							"去掉词尾的「る」，然后接「させられる」。",
 						example: "食べる → 食べさせられる",
@@ -472,7 +472,7 @@ export const tutorialSections = [
 					{
 						key: "ru-causativePassive-true-true",
 						title: "使役被动形 · 肯定 · 敬体",
-						formula: "去る + させられます",
+						formula: "<s>る</s> + させられます",
 						explanation:
 							"去掉词尾的「る」，然后接「させられます」。",
 						example: "食べる → 食べさせられます",
@@ -480,7 +480,7 @@ export const tutorialSections = [
 					{
 						key: "ru-causativePassive-false-false",
 						title: "使役被动形 · 否定 · 简体",
-						formula: "去る + させられない",
+						formula: "<s>る</s> + させられない",
 						explanation:
 							"去掉词尾的「る」，然后接「させられない」。",
 						example: "食べる → 食べさせられない",
@@ -488,7 +488,7 @@ export const tutorialSections = [
 					{
 						key: "ru-causativePassive-false-true",
 						title: "使役被动形 · 否定 · 敬体",
-						formula: "去る + させられません",
+						formula: "<s>る</s> + させられません",
 						explanation:
 							"去掉词尾的「る」，然后接「させられません」。",
 						example: "食べる → 食べさせられません",
@@ -501,33 +501,33 @@ export const tutorialSections = [
 					{
 						key: "ru-potential-true-false",
 						title: "可能形 · 肯定 · 简体",
-						formula: "去る + られる（口语中常省略ら，变为れる）",
+						formula: "<s>る</s> + られる（口语中常省略ら，变为れる）",
 						explanation:
-							"标准形：去る + られる。口语中常省略「ら」，变为「れる」。两者均可接受。",
+							"标准形：<s>る</s> + られる。口语中常省略「ら」，变为「れる」。两者均可接受。",
 						example: "食べる → 食べられる / 食べれる",
 					},
 					{
 						key: "ru-potential-true-true",
 						title: "可能形 · 肯定 · 敬体",
-						formula: "去る + られます（/れます）",
+						formula: "<s>る</s> + られます<span class='tutorial-alt'>/れます</span>",
 						explanation:
-							"标准形：去る + られます。口语省略形：去る + れます。",
+							"标准形：<s>る</s> + られます。口语省略形：<s>る</s> + れます。",
 						example: "食べる → 食べられます / 食べれます",
 					},
 					{
 						key: "ru-potential-false-false",
 						title: "可能形 · 否定 · 简体",
-						formula: "去る + られない（/れない）",
+						formula: "<s>る</s> + られない<span class='tutorial-alt'>/れない</span>",
 						explanation:
-							"标准形：去る + られない。口语省略形：去る + れない。",
+							"标准形：<s>る</s> + られない。口语省略形：<s>る</s> + れない。",
 						example: "食べる → 食べられない / 食べれない",
 					},
 					{
 						key: "ru-potential-false-true",
 						title: "可能形 · 否定 · 敬体",
-						formula: "去る + られません（/れません）",
+						formula: "<s>る</s> + られません<span class='tutorial-alt'>/れません</span>",
 						explanation:
-							"标准形：去る + られません。口语省略形：去る + れません。",
+							"标准形：<s>る</s> + られません。口语省略形：<s>る</s> + れません。",
 						example: "食べる → 食べられません / 食べれません",
 					},
 				],
@@ -538,7 +538,7 @@ export const tutorialSections = [
 					{
 						key: "ru-imperative-null-null",
 						title: "命令形",
-						formula: "去る + ろ / よ",
+						formula: "<s>る</s> + ろ / よ",
 						explanation:
 							"去掉词尾的「る」，然后接「ろ」或「よ」。口语中多用「ろ」，书面语中多用「よ」。",
 						example: "食べる → 食べろ / 食べよ",
@@ -550,7 +550,7 @@ export const tutorialSections = [
 	{
 		title: "不规则动词",
 		description:
-			"不规则动词的变形不遵循五段或一段的规律，需要单独记忆。主要有：する（做）、来る（来）、行く（去）、ある（有/存在）。",
+			"不规则动词的变形不遵循五段或一段的规律，需要单独记忆。基础：する（做）、来る（来）、行く（去）、ある（有/存在）。N2：敬语动词（いらっしゃる、おっしゃる、くださる、なさる）、ござる、くれる。",
 		groups: [
 			{
 				title: "する（做）— 核心变形",
@@ -633,7 +633,7 @@ export const tutorialSections = [
 						key: "irv-kuru-present",
 						title: "现在时",
 						formula:
-							"くる / きます / こない / きません（/こないです）",
+							"くる / きます / こない / きません<span class='tutorial-alt'>/こないです</span>",
 						explanation:
 							"くる的变形涉及く/き/こ/来等不同读音。肯定简体：くる / 肯定敬体：きます / 否定简体：こない / 否定敬体：きません。",
 						example: "来る → きます",
@@ -678,7 +678,7 @@ export const tutorialSections = [
 					{
 						key: "irv-kuru-potential",
 						title: "可能形",
-						formula: "こられる（/これる）",
+						formula: "こられる<span class='tutorial-alt'>/これる</span>",
 						explanation:
 							"来る的可能形标准形为「こられる」，口语中也可说「これる」。",
 						example: "来る → こられる / これる",
@@ -718,6 +718,69 @@ export const tutorialSections = [
 					},
 				],
 			},
+				{
+					title: "敬语动词 — ら行五段特殊活用（N2）",
+					rules: [
+						{
+							key: "irv-honorific-masu",
+							title: "ます形（特殊）",
+							formula: "<s>る</s> + い + ます",
+							explanation:
+								"いらっしゃる、おっしゃる、くださる、なさる等敬语动词在接ます时，不是将る变为り（如普通五段），而是去掉る再加い。这一规则适用于所有此类敬语动词（ら行五段特殊活用）。",
+							example: "いらっしゃる → いらっしゃいます（✗ いらっしゃります）",
+						},
+						{
+							key: "irv-honorific-te",
+							title: "て形 / 过去简体",
+							formula: "<s>る</s> + って / った",
+							explanation:
+								"敬语动词的て形和过去简体遵循ら行五段的促音变规则，与普通五段相同：<s>る</s> + って/った。",
+							example: "くださる → くださって / くださった",
+						},
+						{
+							key: "irv-honorific-imperative",
+							title: "命令形（特殊）",
+							formula: "<s>る</s> + い（而非れ）",
+							explanation:
+								"敬语动词的命令形特殊：いらっしゃる→いらっしゃい、くださる→ください、なさる→なさい、おっしゃる→おっしゃい。不是普通五段的「れ」结尾。注意：なさい常用作命令/请求，如「食べなさい」。",
+							example: "くださる → ください（✗ くだされ）",
+						},
+						{
+							key: "irv-honorific-negative",
+							title: "否定形",
+							formula: "<s>る</s> + らない / りません",
+							explanation:
+								"敬语动词的否定形遵循普通五段ら行规律：简体否定+らない、敬体否定+りません。",
+							example: "いらっしゃる → いらっしゃらない",
+						},
+					],
+				},
+				{
+					title: "ござる（特殊敬语·N2）",
+					rules: [
+						{
+							key: "irv-gozaru-masu",
+							title: "ます形（特殊）",
+							formula: "ございます（而非ござります）",
+							explanation:
+								"ござる（ある的谦让语）的ます形为「ございます」，同样适用ら行五段特殊活用：<s>る</s>+い+ます。否定形为「ございません」。",
+							example: "ござる → ございます",
+						},
+					],
+				},
+				{
+					title: "くれる（特殊命令形·N2）",
+					rules: [
+						{
+							key: "irv-kureru-imperative",
+							title: "命令形（特殊）",
+							formula: "くれ（而非くれろ）",
+							explanation:
+								"くれる（给「我」）是一段动词，但命令形特殊为「くれ」而非规则的「くれろ」。这是くれる唯一的特殊之处，其他变形遵循普通一段动词规律。",
+							example: "くれる → くれ（✗ くれろ）",
+						},
+					],
+				},
 		],
 	},
 	{
@@ -746,16 +809,16 @@ export const tutorialSections = [
 					{
 						key: "i-present-false-false",
 						title: "现在时 · 否定 · 简体",
-						formula: "去い + くない",
+						formula: "<s>い</s> + くない",
 						explanation: "去掉词尾「い」，加「くない」。",
 						example: "高い → 高くない",
 					},
 					{
 						key: "i-present-false-true",
 						title: "现在时 · 否定 · 敬体",
-						formula: "去い + くないです　或　去い + くありません",
+						formula: "<s>い</s> + くないです　或　<s>い</s> + くありません",
 						explanation:
-							"方式一：去い + くないです。方式二：去い + くありません（更正式）。",
+							"方式一：<s>い</s> + くないです。方式二：<s>い</s> + くありません（更正式）。",
 						example: "高い → 高くないです / 高くありません",
 					},
 				],
@@ -766,21 +829,21 @@ export const tutorialSections = [
 					{
 						key: "i-past-true-false",
 						title: "过去时 · 肯定 · 简体",
-						formula: "去い + かった",
+						formula: "<s>い</s> + かった",
 						explanation: "去掉词尾「い」，加「かった」。",
 						example: "高い → 高かった",
 					},
 					{
 						key: "i-past-true-true",
 						title: "过去时 · 肯定 · 敬体",
-						formula: "去い + かったです",
+						formula: "<s>い</s> + かったです",
 						explanation: "去掉词尾「い」，加「かったです」。",
 						example: "高い → 高かったです",
 					},
 					{
 						key: "i-past-false-false",
 						title: "过去时 · 否定 · 简体",
-						formula: "去い + くなかった",
+						formula: "<s>い</s> + くなかった",
 						explanation:
 							"去掉词尾「い」，加「くなかった」。",
 						example: "高い → 高くなかった",
@@ -789,9 +852,9 @@ export const tutorialSections = [
 						key: "i-past-false-true",
 						title: "过去时 · 否定 · 敬体",
 						formula:
-							"去い + くなかったです　或　去い + くありませんでした",
+							"<s>い</s> + くなかったです　或　<s>い</s> + くありませんでした",
 						explanation:
-							"方式一：去い + くなかったです。方式二：去い + くありませんでした（更正式）。",
+							"方式一：<s>い</s> + くなかったです。方式二：<s>い</s> + くありませんでした（更正式）。",
 						example:
 							"高い → 高くなかったです / 高くありませんでした",
 					},
@@ -803,7 +866,7 @@ export const tutorialSections = [
 					{
 						key: "i-adverb-null-null",
 						title: "副词形",
-						formula: "去い + く",
+						formula: "<s>い</s> + く",
 						explanation:
 							"去掉词尾「い」，加「く」。用于修饰动词。",
 						example: "高い → 高く（飛ぶ）",
