@@ -542,6 +542,26 @@ On larger screens, we allow verb-type and status-container to always take up scr
 	}
 }
 
+/* ===== Mobile-only adjustments (under 510px) ===== */
+
+@media screen and (max-width: 509px) {
+	body {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		min-height: 100dvh;
+	}
+
+	#toppest-container {
+		width: 100%;
+	}
+
+	#tutorial-view {
+		max-height: calc(100dvh - 4.5rem);
+	}
+}
+
 #tutorial-button {
 	float: left;
 }

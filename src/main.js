@@ -2071,9 +2071,7 @@ class ConjugationApp {
 		const mainInput = document.getElementById("main-text-input");
 		mainInput.disabled = false;
 		mainInput.value = "";
-		if (!isTouch) {
-			mainInput.focus();
-		}
+		mainInput.focus();
 	}
 
 	// Handle generic keydown events that aren't targeting a specific element
