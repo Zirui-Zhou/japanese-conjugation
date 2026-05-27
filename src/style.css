@@ -509,6 +509,9 @@ On larger screens, we allow verb-type and status-container to always take up scr
 		margin-top: 0.9rem;
 		display: block;
 	}
+	#tutorial-view {
+		max-height: 70vh;
+	}
 	#input-container {
 		margin-bottom: 0.5rem;
 	}
@@ -573,7 +576,6 @@ On larger screens, we allow verb-type and status-container to always take up scr
 	padding-right: 0.73rem;
 	padding-bottom: 0.55rem;
 	color: var(--whiteTextColor);
-	max-height: 70vh;
 	overflow-y: auto;
 	scrollbar-width: thin;
 	scrollbar-color: rgb(100, 100, 100) rgb(44, 43, 41);
