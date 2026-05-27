@@ -25,6 +25,12 @@ import {
 	tutorialSections,
 	tutorialRuleMap,
 } from "./tutorialData.js";
+import {
+	recordAttempt,
+	renderStatsView,
+	clearStats,
+	destroyStatsCharts,
+} from "./statsManager.js";
 
 const isTouch = "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
 document.getElementById("press-any-key-text").textContent = isTouch
@@ -38,6 +44,7 @@ const SCREENS = Object.freeze({
 	results: 1,
 	settings: 2,
 	tutorial: 3,
+	stats: 4,
 });
 
 function wordTypeToDisplayText(type) {
@@ -1995,6 +2002,15 @@ class ConjugationApp {
 		document
 			.getElementById("tutorial-filters-toggle-btn")
 			.addEventListener("click", () => toggleTutorialFilters());
+		document
+			.getElementById("stats-button")
+			.addEventListener("click", (e) => this.statsButtonClicked(e));
+		document
+			.getElementById("stats-back-button")
+			.addEventListener("click", (e) => this.statsBackButtonClicked(e));
+		document
+			.getElementById("stats-clear-button")
+			.addEventListener("click", (e) => this.statsClearButtonClicked(e));
 
 		document
 			.getElementById("current-streak-text")
@@ -2034,6 +2050,7 @@ class ConjugationApp {
 	}
 
 	loadMainView() {
+		this.state.questionStartTime = Date.now();
 		this.state.activeScreen = SCREENS.question;
 		document.getElementById("main-view").classList.add("question-screen");
 		document.getElementById("main-view").classList.remove("results-screen");
@@ -2144,6 +2161,17 @@ class ConjugationApp {
 					(e) => e == inputValue
 				);
 
+			const timeSpent = Math.min(
+				Date.now() - (this.state.questionStartTime || Date.now()),
+				60000
+			);
+			recordAttempt(
+				this.state.currentWord.wordJSON.type,
+				this.state.currentWord.conjugation.type,
+				inputWasCorrect,
+				timeSpent
+			);
+
 			updateProbabilites(
 				this.state.currentWordList,
 				this.state.wordsRecentlySeenQueue,
@@ -2239,6 +2267,30 @@ class ConjugationApp {
 		this.loadMainView();
 	}
 
+	statsButtonClicked(e) {
+		this.state.activeScreen = SCREENS.stats;
+		renderStatsView();
+		toggleDisplayNone(document.getElementById("main-view"), true);
+		toggleDisplayNone(document.getElementById("stats-view"), false);
+		toggleDisplayNone(document.getElementById("donation-section"), true);
+	}
+
+	statsBackButtonClicked(e) {
+		e.preventDefault();
+		destroyStatsCharts();
+		toggleDisplayNone(document.getElementById("main-view"), false);
+		toggleDisplayNone(document.getElementById("stats-view"), true);
+		toggleDisplayNone(document.getElementById("donation-section"), true);
+		this.loadMainView();
+	}
+
+	statsClearButtonClicked(e) {
+		if (confirm("确定要清除所有统计数据吗？此操作不可撤销。")) {
+			clearStats();
+			renderStatsView();
+		}
+	}
+
 	initState(words) {
 		this.state = {};
 		this.state.completeWordList = createWordList(words);
@@ -2302,6 +2354,7 @@ class ConjugationApp {
 
 		this.state.currentStreak0OnReset = false;
 		this.state.loadWordOnReset = false;
+		this.state.questionStartTime = null;
 
 		document.getElementById("max-streak-text").textContent =
 			this.state.maxScoreObjects[this.state.maxScoreIndex].score;

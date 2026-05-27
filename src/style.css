@@ -509,9 +509,6 @@ On larger screens, we allow verb-type and status-container to always take up scr
 		margin-top: 0.9rem;
 		display: block;
 	}
-	#tutorial-view {
-		max-height: 70vh;
-	}
 	#input-container {
 		margin-bottom: 0.5rem;
 	}
@@ -560,8 +557,44 @@ On larger screens, we allow verb-type and status-container to always take up scr
 		width: 100%;
 	}
 
-	#tutorial-view {
-		max-height: calc(100dvh - 4.5rem);
+	#toppest-container {
+		width: 100%;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	#top-container {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		margin: 0.4rem;
+	}
+
+	#tutorial-view, #stats-view {
+		flex: 1;
+		max-height: none;
+		display: flex;
+		flex-direction: column;
+	}
+
+	#tutorial-content, #stats-content {
+		flex: 1;
+	}
+
+	#main-view {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		flex: 1;
+	}
+
+	.stats-row {
+		flex-direction: column;
+	}
+
+	.stats-donut-wrapper {
+		max-width: 220px;
 	}
 }
 
@@ -576,6 +609,7 @@ On larger screens, we allow verb-type and status-container to always take up scr
 	padding-right: 0.73rem;
 	padding-bottom: 0.55rem;
 	color: var(--whiteTextColor);
+	max-height: 70vh;
 	overflow-y: auto;
 	scrollbar-width: thin;
 	scrollbar-color: rgb(100, 100, 100) rgb(44, 43, 41);
@@ -854,4 +888,202 @@ On larger screens, we allow verb-type and status-container to always take up scr
 	font-size: 0.75rem;
 	color: rgb(200, 200, 200);
 	line-height: 1.4;
+}
+
+/* ===== Statistics Styles ===== */
+
+#stats-view {
+	padding-left: 0.73rem;
+	padding-right: 0.73rem;
+	padding-bottom: 0.55rem;
+	color: var(--whiteTextColor);
+	max-height: 70vh;
+	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: rgb(100, 100, 100) rgb(44, 43, 41);
+}
+
+#stats-view::-webkit-scrollbar {
+	width: 6px;
+}
+
+#stats-view::-webkit-scrollbar-track {
+	background: rgb(44, 43, 41);
+	border-radius: 3px;
+}
+
+#stats-view::-webkit-scrollbar-thumb {
+	background: rgb(100, 100, 100);
+	border-radius: 3px;
+}
+
+#stats-view::-webkit-scrollbar-thumb:hover {
+	background: rgb(130, 130, 130);
+}
+
+#stats-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: sticky;
+	top: 0;
+	background: rgb(44, 43, 41);
+	padding-top: 0.45rem;
+	padding-bottom: 0.27rem;
+	z-index: 1;
+}
+
+#stats-header h2 {
+	margin: 0;
+}
+
+#stats-header-buttons {
+	display: flex;
+	gap: 0.36rem;
+	align-items: center;
+}
+
+#stats-clear-button {
+	background: transparent;
+	border: 1px dashed rgb(100, 100, 100);
+	color: rgb(150, 150, 150);
+	box-shadow: none;
+}
+
+#stats-clear-button:hover {
+	background: rgb(63, 63, 63);
+	color: var(--whiteTextColor);
+}
+
+.stats-cards {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.45rem;
+	margin-bottom: 0.9rem;
+}
+
+.stats-card {
+	background: rgb(54, 53, 51);
+	border-radius: 0.36rem;
+	padding: 0.55rem;
+	text-align: center;
+}
+
+.stats-card-value {
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #ffc439;
+	margin: 0;
+}
+
+.stats-card-label {
+	font-size: 0.7rem;
+	color: rgb(150, 150, 150);
+	margin-top: 0.18rem;
+}
+
+.stats-chart-container {
+	margin-bottom: 0.9rem;
+	background: rgb(54, 53, 51);
+	border-radius: 0.36rem;
+	padding: 0.55rem;
+}
+
+.stats-chart-container h3 {
+	font-size: 0.85rem;
+	color: rgb(200, 200, 200);
+	margin: 0 0 0.45rem 0;
+	text-align: left;
+}
+
+.stats-chart-wrapper {
+	position: relative;
+	width: 100%;
+	height: 250px;
+}
+
+.stats-donut-wrapper {
+	height: 200px;
+	max-width: 300px;
+	margin: 0 auto;
+}
+
+.stats-row {
+	display: flex;
+	gap: 0.45rem;
+	margin-bottom: 0.9rem;
+}
+
+.stats-half {
+	flex: 1;
+	min-width: 0;
+}
+
+.stats-daily-table-wrap {
+	overflow-x: auto;
+}
+
+.stats-daily-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.73rem;
+}
+
+.stats-daily-table th,
+.stats-daily-table td {
+	padding: 0.3rem 0.45rem;
+	text-align: center;
+	border-bottom: 1px solid rgb(66, 66, 66);
+}
+
+.stats-daily-table th {
+	color: rgb(150, 150, 150);
+	font-weight: normal;
+	font-size: 0.68rem;
+}
+
+.stats-daily-table td {
+	color: var(--whiteTextColor);
+}
+
+.stats-daily-table tr:hover td {
+	background: rgb(54, 53, 51);
+}
+
+.stats-wrong-list {
+	margin-bottom: 0.9rem;
+}
+
+.stats-wrong-list h3 {
+	font-size: 0.85rem;
+	color: rgb(200, 200, 200);
+	margin: 0 0 0.36rem 0;
+}
+
+.stats-wrong-item {
+	background: rgb(54, 53, 51);
+	border-radius: 0.36rem;
+	padding: 0.36rem 0.55rem;
+	margin-bottom: 0.27rem;
+	border-left: 3px solid rgb(218, 5, 5);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 0.75rem;
+}
+
+.stats-wrong-item .wrong-conj-type {
+	color: rgb(150, 150, 150);
+	font-size: 0.65rem;
+}
+
+.stats-empty {
+	color: rgb(150, 150, 150);
+	text-align: center;
+	padding: 2rem;
+	font-size: 0.8rem;
+}
+
+#stats-button {
+	float: left;
 }

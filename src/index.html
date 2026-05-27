@@ -16,6 +16,7 @@
         <link rel="icon" href="./favicon.ico">
         <link rel="apple-touch-icon" href="./apple-touch-icon.png">
         <link rel="manifest" href="./site.webmanifest">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
         <script type="module" defer src="main.js"></script>
     </head>
     <body>
@@ -57,9 +58,12 @@
                     <div id="settings-container">
                         <div id="settings-child-container">
                             <table id="settings-table">
-                                <td style="width:22%"><button id="tutorial-button">教程 📖</button></td>
-                                <td style="width:42%"id="press-any-key-text" class="display-none">按 Enter/Return 继续</td>
-                                <td style="width:22%"><button id="options-button">设置 ⚙️</button></td>
+                                <tr>
+                                    <td style="width:17%"><button id="tutorial-button">教程 📖</button></td>
+                                    <td style="width:17%"><button id="stats-button">统计 📊</button></td>
+                                    <td style="width:36%" id="press-any-key-text" class="display-none">按 Enter/Return 继续</td>
+                                    <td style="width:17%"><button id="options-button">设置 ⚙️</button></td>
+                                </tr>
                             </table>
                         </div>
                     </div>
@@ -254,6 +258,17 @@
                     </div>
                 </div>
                 <div id="tutorial-content">
+                </div>
+            </div>
+            <div id="stats-view" class="display-none">
+                <div id="stats-header">
+                    <h2>学习统计</h2>
+                    <div id="stats-header-buttons">
+                        <button type="button" id="stats-clear-button" class="tutorial-header-btn">清除数据</button>
+                        <button type="button" id="stats-back-button" class="tutorial-header-btn">返回 ↩</button>
+                    </div>
+                </div>
+                <div id="stats-content">
                 </div>
             </div>
         </div>
